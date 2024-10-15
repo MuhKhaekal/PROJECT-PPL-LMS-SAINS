@@ -18,6 +18,7 @@ export default {
             },
             colors: {
                 primary: "#093B3B",
+                'btn-primary': "#FCD980"
             },
         },
     },

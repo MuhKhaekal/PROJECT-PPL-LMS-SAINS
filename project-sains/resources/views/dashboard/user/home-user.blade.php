@@ -3,15 +3,19 @@
 @section('title', 'Dashboard')
 
 @section('content')
-    <header class="shadow min-h-screen bg-primary -mt-1">
-        <div class="container px-6 max-w-md mx-auto sm:max-w-xl md:max-w-5xl lg:flex lg-max-w-full lg:p-0 border">
-            <div class="lg:p-12 lg:flex-1">
-                <h1 class="text-3xl text-white font-poppins font-semibold">Bangun dan Wujudkan Cita-cita</h1>
-                <h1 class="text-3xl text-white font-poppins font-semibold">Bersama SAINS</h1>
-                <p class="text-1xl text-white font-poppins ">SAINS adalah program pengajaran Al-Qur'an yang membantu mahasiswa Universitas Hasanuddin (Unhas) meraih cita-cita dan mewujudkan kampus bebas buta aksara.</p>
+    <header class="shadow min-h-screen bg-primary -mt-5 flex items-center">
+        <div class="container mx-auto px-4 flex items-center flex-col-reverse md:flex-row">
+            <div class="md:flex-1 lg:flex-1">
+                <h1 class="text-4xl text-white font-poppins font-semibold text-center md:text-left">Bangun dan Wujudkan Cita-cita</h1>
+                <h1 class="text-4xl text-white font-poppins font-semibold text-center md:text-left">Bersama SAINS</h1>
+                <p class="text-1xl text-white font-poppins mt-5 text-center md:text-left">SAINS adalah program pengajaran Al-Qur'an yang membantu mahasiswa Universitas Hasanuddin (Unhas) meraih cita-cita dan mewujudkan kampus bebas buta aksara.</p>
+                <div class="m-5 flex flex-col md:flex-row md:m-0 md:mt-5">
+                    <a href="" class="px-10 py-3 flex justify-center bg-btn-primary rounded-lg">Lihat Kursus</a>
+                    <a href="" class="px-10 py-3 flex justify-center text-white ">Lihat Akun Belajar -></a>
+                </div>
             </div>
-            <div class="hidden lg:flex lg:w-1/2">
-                <img src="{{ asset('images/logo-sains.png') }}" alt="" class="w-64 h-64 object-cover">
+            <div class="md-flex-1 lg:flex-1 flex justify-end">
+                <img src="{{ asset('images/logo-sains.png') }}" alt="" class="size-64 m-8 object-cover lg:size-96">
             </div>
 
         </div>
