@@ -23,5 +23,11 @@
     <main>
         @yield('content')
     </main>
+
+    <footer>
+        <div class="bg-primary w-full mt-10 py-5 flex justify-center">
+            <p class="text-white">Powered by Sistem Informasi 2022 - Kelompok 2</p>
+        </div>
+    </footer>
 </body>
 </html>
