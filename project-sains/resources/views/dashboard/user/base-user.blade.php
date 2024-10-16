@@ -53,7 +53,7 @@
         <div class=" bg-primary w-full mt-10 pt-5 flex flex-col justify-center font-poppins">
             <div class="container mx-auto px-4 lg:flex">
                 <div class="lg:flex-4 lg:w-2/5">
-                    <div class="text-center text-white font-semibold mb-5">
+                    <div class="text-center text-white font-semibold mb-5 lg:text-left lg:mb-1">
                         <p>[SAINS UNHAS]</p>
                     </div>
                     <div class="lg:hidden flex mb-5">
@@ -66,21 +66,33 @@
                             <a href="" class="text-center p-2">Kebijakan Privasi</a>
                         </div>
                     </div>
-                    <div class="bg-btn-primary rounded-md p-4 text-sm flex flex-col">
+                    <div class="hidden lg:block text-white font-light text-sm lg:mb-10">
+                        <p>Bangun dan wujudkan cita bersama edufree</p>
+                    </div>
+                    <div class="bg-btn-primary rounded-md p-4 text-sm flex flex-col lg:flex-row lg:p-2 me-10">
                         <p class="text-center p-2">Email: sainsunhas@unhas.ac.id</p>
                         <p class="text-center p-2">Muslim: 082345643122</p>
                         <p class="text-center p-2">Muslimah: 089512439065</p>
                     </div>
                 </div>
-                <div class="hidden lg:block lg:border lg:flex-1">
-                    d
+                <div class="hidden lg:block lg:flex-1 text-white">
+                    <p class="mb-5">Sosial Media</p>
+                    <a href="" class="font-extralight">Instagram</a><br>
+                    <a href="" class="font-extralight">Telegram</a><br>
+                    <a href="" class="font-extralight">Youtube</a>
                 </div>
-                <div class="hidden lg:block lg:border lg:flex-1">
-                    d
+                <div class="hidden lg:block lg:flex-1 text-white">
+                    <p class="mb-5">Program</p>
+                    <a href="" class="font-extralight">Merdeka Belajar</a><br>
+                    <a href="" class="font-extralight">Finterpreneur</a>
                 </div>
-                <div class="hidden lg:block lg:border lg:flex-1">
-                    d
+                <div class="hidden lg:block lg:flex-1 text-white">
+                    <p class="mb-5">Sosial Media</p>
+                    <a href="" class="font-extralight">Tentang Kami</a><br>
+                    <a href="" class="font-extralight">Ketentuan</a><br>
+                    <a href="" class="font-extralight">Kebijakan Privasi</a>
                 </div>
+
 
             </div>
         </div>

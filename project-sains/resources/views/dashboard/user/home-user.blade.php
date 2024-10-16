@@ -107,7 +107,7 @@
         <div class="container mx-auto px-4 mt-5 flex flex-col sm:mt-16 sm:flex-row">
             <div class="hidden font-poppins  sm:block sm:flex-2 sm:pr-20">
                 <h1 class="text-center text-2xl font-bold sm:text-left">Kata Mereka Tentang SAINS</h1>
-                <p class="text-sm text-gray-500">SAINS telah diikuti lebih dari 10.000 mahasiswa</p>
+                <p class="text-sm text-center text-gray-500">SAINS telah diikuti lebih dari 10.000 mahasiswa</p>
             </div>
             <div class="font-poppins text-sm sm:flex-1">
                 <p class="text-justify">"Sangat baik karena dapat memperdalam ilmu tajwid dan cara bacaan al-quran saya secara baik dan benar ,Setelah menyelesaikan sains saya semakin bersemangat untuk memperdalam ilmu tajwid dan berhenti main michat"</p>
