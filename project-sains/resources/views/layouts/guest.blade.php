@@ -23,14 +23,14 @@
     </head>
     <body class="font-sans bg-primary antialiased">
         <div class="md:flex">
-            <div class="relative min-h-screen bg-cover bg-center flex items-center p-5 md:flex-1" style="background-image: url({{ asset('images/login.png') }});">
+            <div class="relative min-h-screen bg-cover bg-center flex items-center p-5 justify-center md:flex-1" style="background-image: url({{ asset('images/login.png') }});">
                 <div class="">
                     <p class="font-poppins text-white text-3xl font-semibold text-center">Selangkah Lebih Dekat dengan Tajwid</p>
                     <p class="font-poppins text-gray-300 text-sm text-center">Sebuah website untuk  wadah pembelajaran Al-Qur'an terbesar di Universitas Hasanuddin</p>
                 </div>
             </div>
             <div class="md:flex md:items-center md:flex-1 ">
-                <div class="container mx-auto px-4 mt-10 font-poppins mb-10">
+                <div class="container mx-auto px-28 mt-10 font-poppins mb-10">
                     @yield('content')
                 </div>
             </div>

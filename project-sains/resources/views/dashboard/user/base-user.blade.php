@@ -50,8 +50,39 @@
     </main>
 
     <footer>
-        <div class="bg-primary w-full mt-10 py-5 flex justify-center">
-            <p class="text-white">Powered by Sistem Informasi 2022 - Kelompok 2</p>
+        <div class=" bg-primary w-full mt-10 pt-5 flex flex-col justify-center font-poppins">
+            <div class="container mx-auto px-4 lg:flex">
+                <div class="lg:flex-4 lg:w-2/5">
+                    <div class="text-center text-white font-semibold mb-5">
+                        <p>[SAINS UNHAS]</p>
+                    </div>
+                    <div class="lg:hidden flex mb-5">
+                        <div class="flex-1 flex flex-col justify-center text-white text-sm font-light">
+                            <a href="" class="text-center p-2">Instagram</a>
+                            <a href="" class="text-center p-2">Telegram</a>
+                        </div>
+                        <div class="flex-1 flex flex-col justify-center text-white text-sm font-light">
+                            <a href="" class="text-center p-2">Tentang Kami</a>
+                            <a href="" class="text-center p-2">Kebijakan Privasi</a>
+                        </div>
+                    </div>
+                    <div class="bg-btn-primary rounded-md p-4 text-sm flex flex-col">
+                        <p class="text-center p-2">Email: sainsunhas@unhas.ac.id</p>
+                        <p class="text-center p-2">Muslim: 082345643122</p>
+                        <p class="text-center p-2">Muslimah: 089512439065</p>
+                    </div>
+                </div>
+                <div class="hidden lg:block lg:border lg:flex-1">
+                    d
+                </div>
+                <div class="hidden lg:block lg:border lg:flex-1">
+                    d
+                </div>
+                <div class="hidden lg:block lg:border lg:flex-1">
+                    d
+                </div>
+
+            </div>
         </div>
     </footer>
 </body>

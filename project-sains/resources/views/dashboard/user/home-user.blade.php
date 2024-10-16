@@ -27,32 +27,32 @@
             </div>
 
             <div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
-                <div class="bg-gray-200 p-10 rounded-md">
+                <div class="bg-gray-200 p-10 rounded-md shadow-lg">
                     <img src="{{ asset('images/section_1.png') }}" alt="" class="size-8">
                     <h1 class="font-poppins font-semibold mt-3 text-lg">Peningkatan Pemahaman</h1>
                     <p class="text-gray-600">Memperdalam pemahaman terhadap Al-Qur'an dan aplikasinya dalam kehidupan sehari-hari.</p>
                 </div>
-                <div class="bg-gray-200 p-10 rounded-md">
+                <div class="bg-gray-200 p-10 rounded-md shadow-lg">
                     <img src="{{ asset('images/section_2.png') }}" alt="" class="size-8">
                     <h1 class="font-poppins font-semibold mt-3 text-lg">Keterampilan Membaca</h1>
                     <p class="text-gray-600">Latihan membaca Al-Qur'an dengan tajwid yang benar, meningkatkan kemampuan membaca secara umum.</p>
                 </div>
-                <div class="bg-gray-200 p-10 rounded-md">
+                <div class="bg-gray-200 p-10 rounded-md shadow-lg">
                     <img src="{{ asset('images/section_3.png') }}" alt="" class="size-8">
                     <h1 class="font-poppins font-semibold mt-3 text-lg">Karakter Positif</h1>
                     <p class="text-gray-600">Mengembangkan karakter positif, seperti disiplin dan empati, melalui nilai-nilai ajaran Al-Qur'an.</p>
                 </div>
-                <div class="bg-gray-200 p-10 rounded-md">
+                <div class="bg-gray-200 p-10 rounded-md shadow-lg">
                     <img src="{{ asset('images/section_4.png') }}" alt="" class="size-8">
                     <h1 class="font-poppins font-semibold mt-3 text-lg">Lingkungan Positif</h1>
                     <p class="text-gray-600">Menciptakan atmosfer kampus yang mendukung pembelajaran dan mengurangi buta aksara.</p>
                 </div>
-                <div class="bg-gray-200 p-10 rounded-md">
+                <div class="bg-gray-200 p-10 rounded-md shadow-lg">
                     <img src="{{ asset('images/section_5.png') }}" alt="" class="size-8">
                     <h1 class="font-poppins font-semibold mt-3 text-lg">Akses Fleksibel</h1>
                     <p class="text-gray-600">Program ini gratis dan dapat diakses secara online, memberikan kemudahan bagi mahasiswa.</p>
                 </div>
-                <div class="bg-gray-200 p-10 rounded-md">
+                <div class="bg-gray-200 p-10 rounded-md shadow-lg">
                     <img src="{{ asset('images/section_6.png') }}" alt="" class="size-8">
                     <h1 class="font-poppins font-semibold mt-3 text-lg">Komunitas Solid</h1>
                     <p class="text-gray-600">Kesempatan untuk berinteraksi dan bersinergi dengan mahasiswa lain yang memiliki minat yang sama.</p>
@@ -70,7 +70,7 @@
                 <p class="text-sm text-justify text-gray-600">SAINS diharapkan menjadi program yang bermanfaat dalam pendidikan, meningkatkan pemahaman Al-Qur'an dan praktik ajaran Islam bagi mahasiswa.</p>
             </div>
             <div class="sm:flex-1">
-                <img src="{{ asset('images/foto_1.png') }}" alt="">
+                <img src="{{ asset('images/foto_1.png') }}" alt="" class="shadow-lg">
             </div>
         </div>
         <div class="container mx-auto px-4 flex flex-col items-center sm:flex-row-reverse sm:mt-16">
@@ -80,7 +80,7 @@
                 <p class="text-sm text-justify text-gray-600">SAINS diharapkan menjadi program yang bermanfaat dalam pendidikan, meningkatkan pemahaman Al-Qur'an dan praktik ajaran Islam bagi mahasiswa.</p>
             </div>
             <div class="sm:flex-1">
-                <img src="{{ asset('images/foto_2.png') }}" alt="">
+                <img src="{{ asset('images/foto_2.png') }}" alt="" class="shadow-lg">
             </div>
         </div>
     </section>
