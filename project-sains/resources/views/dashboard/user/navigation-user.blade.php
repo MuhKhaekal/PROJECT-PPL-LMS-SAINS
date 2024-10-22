@@ -19,7 +19,7 @@
                     </x-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('study-group')">
+                    <x-nav-link :href="route('study-group.index')" :active="request()->routeIs('study-group')">
                         <span class="{{ request()->routeIs('study-group') ? 'text-white font-semibold' : 'text-gray-500 hover:text-gray-400' }}">
                             {{ __('Study Group') }}
                         </span>

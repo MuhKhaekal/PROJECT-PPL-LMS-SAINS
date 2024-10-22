@@ -10,6 +10,7 @@ use App\Http\Controllers\Auth\PasswordController;
 use App\Http\Controllers\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\VerifyEmailController;
+use App\Http\Controllers\StudyGroupController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware('guest')->group(function () {
@@ -59,4 +60,15 @@ Route::middleware('auth')->group(function () {
         ->name('logout');
 
     Route::resource('kelola-akun', AccountsController::class)->middleware('admin');
+    Route::resource('study-group', StudyGroupController::class)
+    ->middleware('user')
+    ->names([
+        'index' => 'study-group.index',
+        'create' => 'study-group.create',
+        'store' => 'study-group.store',
+        'show' => 'study-group.show',
+        'edit' => 'study-group.edit',
+        'update' => 'study-group.update',
+        'destroy' => 'study-group.destroy',
+    ]);
 });
