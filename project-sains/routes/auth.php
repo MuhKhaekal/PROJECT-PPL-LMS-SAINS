@@ -11,6 +11,8 @@ use App\Http\Controllers\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\VerifyEmailController;
 use App\Http\Controllers\StudyGroupController;
+use App\Http\Controllers\AsistenGroupController;
+use App\Http\Controllers\PresensiController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware('guest')->group(function () {
@@ -70,5 +72,27 @@ Route::middleware('auth')->group(function () {
         'edit' => 'study-group.edit',
         'update' => 'study-group.update',
         'destroy' => 'study-group.destroy',
+    ]);
+    Route::resource('asisten-group', AsistenGroupController::class)
+    ->middleware('asisten')
+    ->names([
+        'index' => 'asisten-group.index',
+        'create' => 'asisten-group.create',
+        'store' => 'asisten-group.store',
+        'show' => 'asisten-group.show',
+        'edit' => 'asisten-group.edit',
+        'update' => 'asisten-group.update',
+        'destroy' => 'asisten-group.destroy',
+    ]);
+    Route::resource('presensi', PresensiController::class)
+    ->middleware('asisten')
+    ->names([
+        'index' => 'presensi.index',
+        'create' => 'presensi.create',
+        'store' => 'presensi.store',
+        'show' => 'presensi.show',
+        'edit' => 'presensi.edit',
+        'update' => 'presensi.update',
+        'destroy' => 'presensi.destroy',
     ]);
 });

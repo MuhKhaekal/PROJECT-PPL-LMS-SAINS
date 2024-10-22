@@ -1,6 +1,6 @@
-@extends('dashboard.user.base-user')
+@extends('dashboard.asisten.base-asisten')
 
-@section('title', 'SAINS - Study Group')
+@section('title', 'SAINS - Asisten Group')
 
 @section('content')
 
@@ -12,6 +12,15 @@
         </div>
 
         <div class="md:flex-1">
+            <div class="border-b border-gray-300">
+                <a href="{{ route('presensi.index') }}" class="">
+                    <button class="w-full flex items-center text-left py-4">
+                        <span><img src="{{ asset('images/peserta_presensi.png') }}" alt="" class="w-10 me-4"></span>
+                        <span class="font-semibold">Presensi Kehadiran</span>
+                    </button>
+                </a>
+            
+            </div>
             <div class="border-b border-gray-300">
                 <button class="w-full flex justify-between items-center text-left py-4" onclick="toggleAccordion('accordion1', 'icon1')">
                     <span class="font-semibold">Pertemuan 1 | Ilmu Tajwid</span>
@@ -66,7 +75,7 @@
         <div class="bg-white rounded-lg p-6 shadow-lg max-w-md w-full">
             <h2 class="text-lg font-semibold mb-4">Konfirmasi Pendaftaran</h2>
             <p id="modalCourseName" class="mb-4"></p>
-            <form id="registrationForm" action="{{ route('study-group.store') }}" method="POST">
+            <form id="registrationForm" action="{{ route('asisten-group.store') }}" method="POST">
                 @csrf
                 <input type="hidden" name="course_id" id="courseIdInput">
                 <div class="flex justify-end">

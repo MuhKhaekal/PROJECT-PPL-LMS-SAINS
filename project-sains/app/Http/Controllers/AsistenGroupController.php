@@ -2,14 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
 use App\Models\Faculty;
 use App\Models\PraktikanGroup;
-use App\Models\Course;
-use App\Models\User;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class StudyGroupController extends Controller
+class AsistenGroupController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -23,7 +21,7 @@ class StudyGroupController extends Controller
         ->join('course', 'praktikangroup.course_id', '=', 'course.id')
         ->select('course.course_name')
         ->first();
-        return view('dashboard.user.study-group-user', compact('facultyList', 'userId', 'checkGroup', 'courseName'));
+        return view('dashboard.asisten.asisten-group', compact('facultyList', 'userId', 'checkGroup', 'courseName'));
     }
 
     /**
@@ -50,19 +48,19 @@ class StudyGroupController extends Controller
         ->where('course_id', $courseId)
         ->first();
 
-    // Jika sudah terdaftar, kembalikan dengan pesan error
-    if ($existingEnrollment) {
-        return view('dashboard.user.home-user');
-    }
+        // Jika sudah terdaftar, kembalikan dengan pesan error
+        if ($existingEnrollment) {
+            return view('dashboard.asisten.home-asisten');
+        }
 
-    // Jika belum, daftarkan ke dalam tabel practitioner_group
-    PraktikanGroup::create([
-        'user_id' => $userId,
-        'course_id' => $courseId,
-    ]);
+        // Jika belum, daftarkan ke dalam tabel practitioner_group
+        PraktikanGroup::create([
+            'user_id' => $userId,
+            'course_id' => $courseId,
+        ]);
 
     // Redirect dengan pesan sukses
-    return redirect()->back()->with('success', 'Berhasil mendaftar ke program studi!');
+        return redirect()->back()->with('success', 'Berhasil mendaftar ke program studi!');
     }
 
     /**
