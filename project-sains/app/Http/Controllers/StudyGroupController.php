@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Faculty;
+use App\Models\PraktikanGroup;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class StudyGroupController extends Controller
 {
@@ -13,7 +16,9 @@ class StudyGroupController extends Controller
     public function index()
     {
         $facultyList = Faculty::with('courses')->get();
-        return view('dashboard.user.study-group-user', compact('facultyList'));
+        $userId = Auth::id();
+        $checkGroup = PraktikanGroup::all();
+        return view('dashboard.user.study-group-user', compact('facultyList', 'userId', 'checkGroup'));
     }
 
     /**
@@ -29,7 +34,30 @@ class StudyGroupController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'course_id' => 'required|exists:course,id'
+        ]);
+
+        $userId = Auth::id();
+        $courseId = $request->input('course_id');
+
+        $existingEnrollment = PraktikanGroup::where('user_id', $userId)
+        ->where('course_id', $courseId)
+        ->first();
+
+    // Jika sudah terdaftar, kembalikan dengan pesan error
+    if ($existingEnrollment) {
+        return view('dashboard.user.home-user');
+    }
+
+    // Jika belum, daftarkan ke dalam tabel practitioner_group
+    PraktikanGroup::create([
+        'user_id' => $userId,
+        'course_id' => $courseId,
+    ]);
+
+    // Redirect dengan pesan sukses
+    return redirect()->back()->with('success', 'Berhasil mendaftar ke program studi!');
     }
 
     /**

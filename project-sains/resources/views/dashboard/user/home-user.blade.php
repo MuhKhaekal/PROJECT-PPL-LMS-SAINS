@@ -1,6 +1,6 @@
 @extends('dashboard.user.base-user')
 
-@section('title', 'Dashboard')
+@section('title', 'SAINS - Dashboard')
 
 @section('content')
     <header class="shadow min-h-screen bg-primary -mt-5 flex items-center">

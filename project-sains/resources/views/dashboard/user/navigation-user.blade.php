@@ -19,8 +19,8 @@
                     </x-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('study-group.index')" :active="request()->routeIs('study-group')">
-                        <span class="{{ request()->routeIs('study-group') ? 'text-white font-semibold' : 'text-gray-500 hover:text-gray-400' }}">
+                    <x-nav-link :href="route('study-group.index')" :active="request()->routeIs('study-group.index')">
+                        <span class="{{ request()->routeIs('study-group.index') ? 'text-white font-semibold' : 'text-gray-500 hover:text-gray-400' }}">
                             {{ __('Study Group') }}
                         </span>
                     </x-nav-link>
@@ -96,7 +96,7 @@
             </x-responsive-nav-link>
         </div>
         <div class="pt-2 pb-3 space-y-1">
-            <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+            <x-responsive-nav-link :href="route('study-group.index')" :active="request()->routeIs('study-group.index')">
                 {{ __('Study Group') }}
             </x-responsive-nav-link>
         </div>
