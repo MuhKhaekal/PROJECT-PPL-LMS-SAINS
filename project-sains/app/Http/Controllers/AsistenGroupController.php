@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Faculty;
 use App\Models\PraktikanGroup;
+use App\Models\Meeting;
 use Illuminate\Support\Facades\Auth;
 
 class AsistenGroupController extends Controller
@@ -19,9 +20,20 @@ class AsistenGroupController extends Controller
         $checkGroup = PraktikanGroup::all();
         $courseName = PraktikanGroup::where('user_id', $userId)
         ->join('course', 'praktikangroup.course_id', '=', 'course.id')
-        ->select('course.course_name')
+        ->select('course.id', 'course.course_name')
         ->first();
-        return view('dashboard.asisten.asisten-group', compact('facultyList', 'userId', 'checkGroup', 'courseName'));
+        if ($courseName) {
+            $meetings = Meeting::where('course.id', $courseName->id)
+                ->join('course', 'meeting.course_id', '=', 'course.id')
+                ->join('praktikangroup', 'course.id', '=', 'praktikangroup.course_id')
+                ->select('meeting.id','meeting.meeting_name', 'meeting.meeting_topic', 'meeting.description', 'meeting.course_id')
+                ->distinct()
+                ->get();
+        } else {
+            // Jika tidak ada courseName, set meetings sebagai koleksi kosong
+            $meetings = collect();
+        }
+        return view('dashboard.asisten.asisten-group', compact('facultyList', 'userId', 'checkGroup', 'courseName', 'meetings'));
     }
 
     /**
@@ -90,8 +102,9 @@ class AsistenGroupController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy($id)
     {
-        //
+
     }
+    
 }

@@ -13,10 +13,11 @@ return new class extends Migration
     {
         Schema::create('presence', function (Blueprint $table) {
             $table->id();
-            $table->string('Meeting');
-            $table->integer('Present');
-            $table->integer('Present');
-            $table->timestamps();
+            $table->enum('status',['hadir','izin','sakit','alfa']);
+            $table->text('keterangan');
+            $table->foreignID('user_id')->constrained('users')->onDelete('cascade');
+            $table->foreignID('course_id')->constrained('course')->onDelete('cascade');
+            $table->foreignID('meeting_id')->constrained('meeting')->onDelete('cascade');
         });
     }
 

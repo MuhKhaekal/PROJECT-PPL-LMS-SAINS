@@ -13,5 +13,19 @@ class Course extends Model
 
     public function faculty(){
         return $this->belongsTo(Faculty::class);
+        
+    }
+    public function presences()
+    {
+        return $this->hasMany(Presence::class);
+    }
+    public function groups()
+    {
+        return $this->belongsTo(PraktikanGroup::class);
+    }
+
+    public function meetings()
+    {
+        return $this->belongsTo(Meeting::class);
     }
 }

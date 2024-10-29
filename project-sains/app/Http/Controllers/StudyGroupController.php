@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Faculty;
 use App\Models\PraktikanGroup;
-use App\Models\Course;
+use App\Models\Meeting;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -21,9 +21,24 @@ class StudyGroupController extends Controller
         $checkGroup = PraktikanGroup::all();
         $courseName = PraktikanGroup::where('user_id', $userId)
         ->join('course', 'praktikangroup.course_id', '=', 'course.id')
-        ->select('course.course_name')
+        ->select('course.id', 'course.course_name')
         ->first();
-        return view('dashboard.user.study-group-user', compact('facultyList', 'userId', 'checkGroup', 'courseName'));
+        
+        if ($courseName) {
+            $meetings = Meeting::where('course.id', $courseName->id)
+                ->join('course', 'meeting.course_id', '=', 'course.id')
+                ->join('praktikangroup', 'course.id', '=', 'praktikangroup.course_id')
+                ->select('meeting.meeting_name', 'meeting.meeting_topic', 'meeting.description', 'meeting.course_id')
+                ->distinct()
+                ->get();
+        } else {
+            // Jika tidak ada courseName, set meetings sebagai koleksi kosong
+            $meetings = collect();
+        }
+        
+        
+        
+        return view('dashboard.user.study-group-user', compact('facultyList', 'userId', 'checkGroup', 'courseName', 'meetings'));
     }
 
     /**

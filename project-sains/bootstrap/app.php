@@ -15,6 +15,7 @@ return Application::configure(basePath: dirname(__DIR__))
             'admin' => \App\Http\Middleware\Admin::class,
             'user'=> \App\Http\Middleware\User::class,
             'asisten'=> \App\Http\Middleware\Asisten::class,
+            'checkUserGroup' => \App\Http\Middleware\CheckUserGroup::class
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {

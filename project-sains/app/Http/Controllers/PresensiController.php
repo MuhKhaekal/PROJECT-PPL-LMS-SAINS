@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\PraktikanGroup;
+use Illuminate\Support\Facades\Auth;
+
+
 class PresensiController extends Controller
 {
     /**
@@ -11,11 +14,20 @@ class PresensiController extends Controller
      */
     public function index()
     {
-        $allStudents = PraktikanGroup::join('users', 'praktikangroup.user_id', '=', 'users.id')
+        $userId = Auth::id();
+
+        $courseName = PraktikanGroup::where('user_id', $userId)
         ->join('course', 'praktikangroup.course_id', '=', 'course.id')
+        ->select('course.id', 'course.course_name')
+        ->first();
+        
+        $students = PraktikanGroup::where('course.id', $courseName->id )
+        ->join('users', 'praktikangroup.user_id', '=', 'users.id')
+        ->join('course', 'praktikangroup.course_id', '=', 'course.id')
+        ->where('users.role', 'user')
         ->select('users.name', 'course.course_name') // Memilih nama mahasiswa dan nama kursus
         ->get();
-        return view('dashboard.asisten.presensi-asisten', compact('allStudents'));
+        return view('dashboard.asisten.presensi-asisten', compact('students'));
     }
 
     /**

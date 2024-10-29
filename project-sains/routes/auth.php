@@ -13,6 +13,7 @@ use App\Http\Controllers\Auth\VerifyEmailController;
 use App\Http\Controllers\StudyGroupController;
 use App\Http\Controllers\AsistenGroupController;
 use App\Http\Controllers\PresensiController;
+use App\Http\Controllers\MeetingController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware('guest')->group(function () {
@@ -63,7 +64,7 @@ Route::middleware('auth')->group(function () {
 
     Route::resource('kelola-akun', AccountsController::class)->middleware('admin');
     Route::resource('study-group', StudyGroupController::class)
-    ->middleware('user')
+    ->middleware('user') 
     ->names([
         'index' => 'study-group.index',
         'create' => 'study-group.create',
@@ -73,6 +74,7 @@ Route::middleware('auth')->group(function () {
         'update' => 'study-group.update',
         'destroy' => 'study-group.destroy',
     ]);
+
     Route::resource('asisten-group', AsistenGroupController::class)
     ->middleware('asisten')
     ->names([
@@ -94,5 +96,17 @@ Route::middleware('auth')->group(function () {
         'edit' => 'presensi.edit',
         'update' => 'presensi.update',
         'destroy' => 'presensi.destroy',
+    ]);
+
+    Route::resource('pertemuan', MeetingController::class)
+    ->middleware('asisten')
+    ->names([
+        'index' => 'pertemuan.index',
+        'create' => 'pertemuan.create',
+        'store' => 'pertemuan.store',
+        'show' => 'pertemuan.show',
+        'edit' => 'pertemuan.edit',
+        'update' => 'pertemuan.update',
+        'destroy' => 'pertemuan.destroy',
     ]);
 });

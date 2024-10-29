@@ -20,7 +20,7 @@
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link :href="route('asisten-group.index')" :active="request()->routeIs('asisten-group.index', 'presensi.index')">
-                        <span class="{{ request()->routeIs('asisten-group.index', 'presensi.index') ? 'text-white font-semibold' : 'text-gray-500 hover:text-gray-400' }}">
+                        <span class="{{ request()->routeIs('asisten-group.index', 'presensi.index', 'pertemuan.create') ? 'text-white font-semibold' : 'text-gray-500 hover:text-gray-400' }}">
                             {{ __('Asisten Group') }}
                         </span>
                     </x-nav-link>

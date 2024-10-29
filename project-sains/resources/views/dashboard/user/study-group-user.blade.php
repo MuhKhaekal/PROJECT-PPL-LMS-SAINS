@@ -8,21 +8,23 @@
     <!-- Jika user sudah terdaftar, tampilkan pesan ini -->
     <div class="container mx-auto px-4 flex flex-col justify-center">
         <div class="relative min-h-96 bg-contain bg-center flex items-center justify-center" style="background-image: url({{ asset('images/bg_study-group.png')}}); background-repeat: no-repeat">
-            <p class="font-poppins text-white text-sm font-semibold md:text-5xl md:my-48">{{$courseName->course_name }}</p>
+            <p class="font-poppins text-white text-sm font-semibold md:text-5xl md:my-48">{{$courseName->course_name}}</p>
         </div>
 
         <div class="md:flex-1">
-            <div class="border-b border-gray-300">
-                <button class="w-full flex justify-between items-center text-left py-4" onclick="toggleAccordion('accordion1', 'icon1')">
-                    <span class="font-semibold">Pertemuan 1 | Ilmu Tajwid</span>
-                    <span id="icon1" class="text-2xl font-bold">+</span>
-                </button>
-                <div id="accordion1" class="accordion-content hidden" style="max-height: 0;">
-                    <p class="p-4 text-gray-700">
-                        Kursus yang disediakan bisa diakses gratis untuk menunjang kebutuhan dalam bidang kependidikan.
-                    </p>
+            @foreach ($meetings as $meeting)
+                <div class="border-b border-gray-300">
+                    <button class="w-full flex justify-between items-center text-left py-4" onclick="toggleAccordion('accordion1', 'icon1')">
+                        <span class="font-semibold">{{ $meeting->meeting_name . " | " . $meeting->meeting_topic}}</span>
+                        <span id="icon1" class="text-2xl font-bold">+</span>
+                    </button>
+                    <div id="accordion1" class="accordion-content hidden" style="max-height: 0;">
+                        <p class="p-4 text-gray-700">
+                            {{ $meeting->description }}
+                        </p>
+                    </div>
                 </div>
-            </div>
+            @endforeach
         </div>
     </div>
 

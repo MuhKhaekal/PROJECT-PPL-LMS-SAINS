@@ -1,13 +1,16 @@
 @extends('dashboard.asisten.base-asisten')
 
-@section('title', 'SAINS - Dashboard')
+@section('title', 'SAINS - Presensi')
 
 @section('content')
 
 <div class="container mx-auto px-4 flex flex-col justify-center font-poppins">
-    <div class="text-center m-5 font-semibold">
-        <p>Presensi Kehadiran</p>
-    </div>
+  <div class="text-center m-5 font-semibold">
+    <p>Presensi Kehadiran</p>
+  </div>
+  <div class="text-center">
+    <p>Pertemuan 1</p>
+  </div>
     <div class="">
         <table class="w-full table-auto border-collapse border border-slate-500">
             <thead class="bg-primary text-white">
@@ -21,7 +24,7 @@
               </tr>
             </thead>
             <tbody>
-                @foreach ($allStudents as $student)
+                @foreach ($students as $student)
               <tr class="border-collapse border">
                 <td class="p-5">{{ $student->name }}</td>
                 <td class="text-center"><input type="radio" name="presensi" value="1"></td>

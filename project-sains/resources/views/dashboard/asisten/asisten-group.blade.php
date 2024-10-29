@@ -21,19 +21,52 @@
                 </a>
             
             </div>
-            <div class="border-b border-gray-300">
-                <button class="w-full flex justify-between items-center text-left py-4" onclick="toggleAccordion('accordion1', 'icon1')">
-                    <span class="font-semibold">Pertemuan 1 | Ilmu Tajwid</span>
-                    <span id="icon1" class="text-2xl font-bold">+</span>
-                </button>
-                <div id="accordion1" class="accordion-content hidden" style="max-height: 0;">
-                    <p class="p-4 text-gray-700">
-                        Kursus yang disediakan bisa diakses gratis untuk menunjang kebutuhan dalam bidang kependidikan.
-                    </p>
+            @foreach ($meetings as $meeting)
+                <div class="border-b border-gray-300">
+                    <button class="w-full flex justify-between items-center text-left py-4" onclick="toggleAccordion({{ $meeting->id }}, 'icon1')">
+                        <span class="font-semibold">{{ $meeting->meeting_name . " | " . $meeting->meeting_topic}}</span>
+                        <span id="icon1" class="text-2xl font-bold">+</span>
+                    </button>
+                    <div class="flex space-x-2">
+                        <!-- Tombol Edit -->
+                        <a href="{{ route('pertemuan.edit', $meeting->id) }}" class="bg-blue-500 text-white px-4 py-1 rounded hover:bg-blue-600">Edit</a>
+                        <!-- Tombol Hapus -->
+                        <form action="{{ route('pertemuan.destroy', $meeting->id) }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button type="button" onclick="openModalDelete()" class="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600">Hapus</button>
+
+                            <div id="confirmationModal" class="fixed z-10 inset-0 overflow-y-auto hidden">
+                                <div class="flex items-center justify-center min-h-screen">
+                                    <div class="bg-white rounded-lg p-6 shadow-lg max-w-md w-full">
+                        
+                                        <h2 class="text-lg font-semibold mb-4">Konfirmasi Pengunggahan</h2>
+                                        <p id="modalCourseName" class="mb-4">Apakah data pertemuan sudah benar?</p>
+                                        <div class="flex justify-end">
+                                            <button type="button" class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded mr-2" onclick="closeModalDelete()">Batal</button>
+                                            <button type="submit" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">Konfirmasi</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div id="{{ $meeting->id }}" class="accordion-content hidden" style="max-height: 0;">
+                        <p class="p-4 text-gray-700">
+                            {{ $meeting->description }}
+                        </p>
+                    </div>
                 </div>
-            </div>
+            @endforeach
+            <a href="{{ route('pertemuan.create') }}">
+                <div class="text-center bg-primary rounded-md pb-2">
+                        <h1 class="text-white text-4xl">+</h1>
+                </div>
+            </a>
         </div>
     </div>
+
+
 
 @else
     <!-- Jika user belum terdaftar, tampilkan bagian pendaftaran -->
@@ -108,6 +141,14 @@
 
     function closeModal() {
         // Sembunyikan modal
+        document.getElementById('confirmationModal').classList.add('hidden');
+    }
+
+    function openModalDelete() {
+        document.getElementById('confirmationModal').classList.remove('hidden');
+    }
+
+    function closeModalDelete() {
         document.getElementById('confirmationModal').classList.add('hidden');
     }
 </script>
