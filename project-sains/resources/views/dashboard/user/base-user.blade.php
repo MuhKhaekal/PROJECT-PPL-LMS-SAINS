@@ -6,6 +6,8 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     
     <title>@yield('title')</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet" />
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -49,7 +51,7 @@
         @yield('content')
     </main>
 
-    <footer>
+    <footer data-aos="fade">
         <div class=" bg-primary w-full mt-10 pt-5 flex flex-col justify-center font-poppins">
             <div class="container mx-auto px-4 lg:flex">
                 <div class="lg:flex-4 lg:w-2/5">
@@ -97,5 +99,12 @@
             </div>
         </div>
     </footer>
+    <script>
+        AOS.init({
+            duration: 1000,
+            easing: 'ease-in-out',
+            once: true,
+        });
+    </script>
 </body>
 </html>

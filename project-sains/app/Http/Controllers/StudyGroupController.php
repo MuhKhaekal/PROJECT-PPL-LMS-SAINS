@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Assignment;
 use App\Models\Faculty;
+use App\Models\Material;
 use App\Models\PraktikanGroup;
 use App\Models\Meeting;
 use App\Models\User;
@@ -19,27 +21,36 @@ class StudyGroupController extends Controller
         $facultyList = Faculty::with('courses')->get();
         $userId = Auth::id();
         $checkGroup = PraktikanGroup::all();
-        $courseName = PraktikanGroup::where('user_id', $userId)
-        ->join('course', 'praktikangroup.course_id', '=', 'course.id')
-        ->select('course.id', 'course.course_name')
-        ->first();
         
+        // Ambil course yang terkait dengan user
+        $courseName = PraktikanGroup::where('user_id', $userId)
+            ->join('course', 'praktikangroup.course_id', '=', 'course.id')
+            ->select('course.id', 'course.course_name')
+            ->first();
+    
         if ($courseName) {
             $meetings = Meeting::where('course.id', $courseName->id)
                 ->join('course', 'meeting.course_id', '=', 'course.id')
                 ->join('praktikangroup', 'course.id', '=', 'praktikangroup.course_id')
-                ->select('meeting.meeting_name', 'meeting.meeting_topic', 'meeting.description', 'meeting.course_id')
+                ->select('meeting.id', 'meeting.meeting_name', 'meeting.meeting_topic', 'meeting.description', 'meeting.course_id')
                 ->distinct()
                 ->get();
+            
+            $meetingIds = $meetings->pluck('id');
+            $materials = Material::where('course_id', $courseName->id)->get();    
+            $assignments = Assignment::where('course_id', $courseName->id)->get();  
+            
         } else {
-            // Jika tidak ada courseName, set meetings sebagai koleksi kosong
+            // Jika tidak ada courseName, set meetings dan material sebagai koleksi kosong
             $meetings = collect();
+            $materials = collect();    
+            $assignments = collect();  
         }
+  
         
-        
-        
-        return view('dashboard.user.study-group-user', compact('facultyList', 'userId', 'checkGroup', 'courseName', 'meetings'));
+        return view('dashboard.user.study-group-user', compact('facultyList', 'userId', 'checkGroup', 'courseName', 'meetings', 'materials', 'assignments'));
     }
+    
 
     /**
      * Show the form for creating a new resource.

@@ -13,8 +13,8 @@ class Course extends Model
 
     public function faculty(){
         return $this->belongsTo(Faculty::class);
-        
     }
+    
     public function presences()
     {
         return $this->hasMany(Presence::class);
@@ -27,5 +27,14 @@ class Course extends Model
     public function meetings()
     {
         return $this->belongsTo(Meeting::class);
+    }
+
+    public function materials()
+    {
+        return $this->hasMany(Material::class);
+    }
+    public function assignment()
+    {
+        return $this->hasMany(Assignment::class);
     }
 }

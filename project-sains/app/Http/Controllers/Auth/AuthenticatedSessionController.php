@@ -24,12 +24,19 @@ class AuthenticatedSessionController extends Controller
      */
     public function store(LoginRequest $request): RedirectResponse
     {
-        $request->authenticate();
-
-        $request->session()->regenerate();
-
-        return redirect()->intended(route('dashboard', absolute: false));
+        $credentials = $request->only('nim', 'password'); // Ubah menjadi nim
+    
+        if (Auth::attempt($credentials)) {
+            $request->session()->regenerate();
+    
+            return redirect()->intended(route('dashboard'));
+        }
+    
+        return back()->withErrors([
+            'nim' => 'The provided credentials do not match our records.',
+        ]);
     }
+    
 
     /**
      * Destroy an authenticated session.

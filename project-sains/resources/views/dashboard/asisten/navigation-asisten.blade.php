@@ -26,16 +26,16 @@
                     </x-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('faq')">
-                        <span class="{{ request()->routeIs('faq') ? 'text-white font-semibold' : 'text-gray-500 hover:text-gray-400' }}">
+                    <x-nav-link :href="route('faqasisten.index')" :active="request()->routeIs('faqasisten.index')">
+                        <span class="{{ request()->routeIs('faqasisten.index') ? 'text-white font-semibold' : 'text-gray-500 hover:text-gray-400' }}">
                             {{ __('FAQ') }}
                         </span>
                     </x-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('blog')">
-                        <span class="{{ request()->routeIs('blog') ? 'text-white font-semibold' : 'text-gray-500 hover:text-gray-400' }}">
-                            {{ __('Blog') }}
+                    <x-nav-link :href="route('announcementasisten.index')" :active="request()->routeIs('announcementasisten.index')">
+                        <span class="{{ request()->routeIs('announcementasisten.index') ? 'text-white font-semibold' : 'text-gray-500 hover:text-gray-400' }}">
+                            {{ __('Pengumuman') }}
                         </span>
                     </x-nav-link>
                 </div>

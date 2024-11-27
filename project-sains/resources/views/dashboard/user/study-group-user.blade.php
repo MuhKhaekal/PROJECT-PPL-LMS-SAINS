@@ -7,21 +7,40 @@
 @if($checkGroup->where('user_id', $userId)->isNotEmpty())
     <!-- Jika user sudah terdaftar, tampilkan pesan ini -->
     <div class="container mx-auto px-4 flex flex-col justify-center">
-        <div class="relative min-h-96 bg-contain bg-center flex items-center justify-center" style="background-image: url({{ asset('images/bg_study-group.png')}}); background-repeat: no-repeat">
+        <div class="relative min-h-96 bg-contain bg-center flex items-center justify-center" style="background-image: url({{ asset('images/bg_study-group.png')}}); background-repeat: no-repeat" data-aos="fade-right">
             <p class="font-poppins text-white text-sm font-semibold md:text-5xl md:my-48">{{$courseName->course_name}}</p>
         </div>
 
-        <div class="md:flex-1">
+
+        <div class="md:flex-1" data-aos="fade-left">
             @foreach ($meetings as $meeting)
                 <div class="border-b border-gray-300">
-                    <button class="w-full flex justify-between items-center text-left py-4" onclick="toggleAccordion('accordion1', 'icon1')">
+                    <button class="w-full flex justify-between items-center text-left py-4" onclick="toggleAccordion('{{ $meeting->id }}', 'icon1')">
                         <span class="font-semibold">{{ $meeting->meeting_name . " | " . $meeting->meeting_topic}}</span>
                         <span id="icon1" class="text-2xl font-bold">+</span>
                     </button>
-                    <div id="accordion1" class="accordion-content hidden" style="max-height: 0;">
+                    <div id='{{ $meeting->id }}' class="accordion-content hidden" style="max-height: 0;">
                         <p class="p-4 text-gray-700">
                             {{ $meeting->description }}
                         </p>
+                        @foreach ($materials->where('meeting_id', $meeting->id) as $material)
+                        <div class="border border-gray-300 rounded-md p-3">
+                            <button class="w-full flex items-center text-left py-4">
+                                <span><img src="{{ asset('images/materi.png') }}" alt="" class="w-10 me-4"></span>
+                                <a href="{{ route('showmaterial.show', $material->id) }}">{{ $material->material_name }}</a>
+                            </button>
+                        </div>
+                        @endforeach
+                        
+                        @foreach ($assignments->where('meeting_id', $meeting->id) as $assignment)
+                        <div class="border border-gray-300 rounded-md p-3">
+                            <button class="w-full flex items-center text-left py-4">
+                                <span><img src="{{ asset('images/tugas.png') }}" alt="" class="w-10 me-4"></span>
+                                <a href="{{ route('showassignment.show', $assignment->id) }}">{{ $assignment->assignment_name }}</a>
+                            </button>
+                        </div>
+                        @endforeach
+
                     </div>
                 </div>
             @endforeach
@@ -31,13 +50,13 @@
 @else
     <!-- Jika user belum terdaftar, tampilkan bagian pendaftaran -->
     <div class="container mx-auto px-4 flex flex-col justify-center">
-        <div class="relative min-h-96 bg-contain bg-center flex items-center justify-center" style="background-image: url({{ asset('images/bg_study-group.png')}}); background-repeat: no-repeat">
+        <div class="relative min-h-96 bg-contain bg-center flex items-center justify-center" style="background-image: url({{ asset('images/bg_study-group.png')}}); background-repeat: no-repeat" data-aos="fade-right">
             <p class="font-poppins text-white text-sm font-semibold md:text-5xl md:my-48">Study Group</p>
         </div>
 
         <div class="md:flex-1">
             @foreach ($facultyList as $faculty)
-            <div class="border-b border-gray-300 bg-primary px-5 text-white rounded-md m-2">
+            <div class="border-b border-gray-300 bg-primary px-5 text-white rounded-md m-2" data-aos="fade-up">
                 <button class="w-full flex justify-between items-center text-left py-4" onclick="toggleAccordion('{{ $faculty->id }}', 'icon1')">
                     <span class="font-semibold">{{ $faculty->faculty_name }}</span>
                     <span id="icon1" class="text-2xl font-bold">+</span>

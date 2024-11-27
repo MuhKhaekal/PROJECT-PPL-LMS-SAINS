@@ -7,41 +7,35 @@
 @if($checkGroup->where('user_id', $userId)->isNotEmpty())
     <!-- Jika user sudah terdaftar, tampilkan pesan ini -->
     <div class="container mx-auto px-4 flex flex-col justify-center">
-        <div class="relative min-h-96 bg-contain bg-center flex items-center justify-center" style="background-image: url({{ asset('images/bg_study-group.png')}}); background-repeat: no-repeat">
+        <div class="relative min-h-96 bg-contain bg-center flex items-center justify-center" style="background-image: url({{ asset('images/bg_study-group.png')}}); background-repeat: no-repeat" data-aos="fade-right">
             <p class="font-poppins text-white text-sm font-semibold md:text-5xl md:my-48">{{$courseName->course_name }}</p>
         </div>
 
         <div class="md:flex-1">
-            <div class="border-b border-gray-300">
-                <a href="{{ route('presensi.index') }}" class="">
-                    <button class="w-full flex items-center text-left py-4">
-                        <span><img src="{{ asset('images/peserta_presensi.png') }}" alt="" class="w-10 me-4"></span>
-                        <span class="font-semibold">Presensi Kehadiran</span>
-                    </button>
-                </a>
-            
-            </div>
+
             @foreach ($meetings as $meeting)
-                <div class="border-b border-gray-300">
+                <div class="border-b border-gray-300" data-aos="fade-left">
                     <button class="w-full flex justify-between items-center text-left py-4" onclick="toggleAccordion({{ $meeting->id }}, 'icon1')">
                         <span class="font-semibold">{{ $meeting->meeting_name . " | " . $meeting->meeting_topic}}</span>
                         <span id="icon1" class="text-2xl font-bold">+</span>
                     </button>
                     <div class="flex space-x-2">
                         <!-- Tombol Edit -->
-                        <a href="{{ route('pertemuan.edit', $meeting->id) }}" class="bg-blue-500 text-white px-4 py-1 rounded hover:bg-blue-600">Edit</a>
+                        <a href="{{ route('pertemuan.edit', $meeting->id) }}">
+                            <p class="bg-blue-500 text-white px-5 py-1 rounded hover:bg-blue-600">Edit</p>
+                        </a>
                         <!-- Tombol Hapus -->
                         <form action="{{ route('pertemuan.destroy', $meeting->id) }}" method="POST">
                             @csrf
                             @method('DELETE')
-                            <button type="button" onclick="openModalDelete()" class="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600">Hapus</button>
+                            <button type="submit" onclick="" class="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600">Hapus</button>
 
-                            <div id="confirmationModal" class="fixed z-10 inset-0 overflow-y-auto hidden">
+                            <div id="confirmationModalDelete" class="fixed z-10 inset-0 overflow-y-auto hidden">
                                 <div class="flex items-center justify-center min-h-screen">
                                     <div class="bg-white rounded-lg p-6 shadow-lg max-w-md w-full">
-                        
+    
                                         <h2 class="text-lg font-semibold mb-4">Konfirmasi Pengunggahan</h2>
-                                        <p id="modalCourseName" class="mb-4">Apakah data pertemuan sudah benar?</p>
+                                        <p id="modalCourseNameDelete" class="mb-4">Apakah data pertemuan sudah benar?</p>
                                         <div class="flex justify-end">
                                             <button type="button" class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded mr-2" onclick="closeModalDelete()">Batal</button>
                                             <button type="submit" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">Konfirmasi</button>
@@ -51,16 +45,38 @@
                             </div>
                         </form>
                     </div>
-                    <div id="{{ $meeting->id }}" class="accordion-content hidden" style="max-height: 0;">
-                        <p class="p-4 text-gray-700">
+                    <div id="{{ $meeting->id }}" class="accordion-content hidden" style="max-height: 0;" >
+                        <p class="p-4 text-gray-700" >
                             {{ $meeting->description }}
                         </p>
+                        <div class="flex justify-center flex-col md:flex-row" >
+                            <div class="md:flex-1">
+                                <a href="{{ route('presensi.create', ['meeting_id' => $meeting->id  ]) }}" class="flex justify-center border p-3 md:flex-col md:items-center">
+                                    <img src="{{ asset('images/peserta_presensi.png') }}" alt="" class="size-8 md:size-16">
+                                    <p class="ms-3 font-semibold md:ms-0">Presensi</p>
+                                </a>
+                            </div>
+                            
+                            <div class="md:flex-1">
+                                <a href="{{ route('materi.index', ['meeting_id' => $meeting->id  ])}}" class="flex justify-center border p-3 md:flex-col md:items-center">
+                                    <img src="{{ asset('images/materi.png') }}" alt="" class="size-8 md:size-16">
+                                    <p class="ms-3 font-semibold md:ms-0">Unggah Materi</p>
+                                </a>
+                            </div>
+                            <div class="md:flex-1">
+                                <a href="{{ route('assignment.index', ['meeting_id' => $meeting->id  ])}}" class="flex justify-center border p-3 md:flex-col md:items-center">
+                                    <img src="{{ asset('images/tugas.png') }}" alt="" class="size-8 md:size-16">
+                                    <p class="ms-3 font-semibold md:ms-0">Unggah Tugas</p>
+                                </a>
+                            </div>
+
+                        </div>
                     </div>
                 </div>
             @endforeach
-            <a href="{{ route('pertemuan.create') }}">
-                <div class="text-center bg-primary rounded-md pb-2">
-                        <h1 class="text-white text-4xl">+</h1>
+            <a href="{{ route('pertemuan.create') }}" >
+                <div class="text-center bg-primary rounded-md pb-2" data-aos="fade-up">
+                        <h1 class="text-white text-4xl mt-10">+</h1>
                 </div>
             </a>
         </div>
@@ -144,8 +160,9 @@
         document.getElementById('confirmationModal').classList.add('hidden');
     }
 
-    function openModalDelete() {
-        document.getElementById('confirmationModal').classList.remove('hidden');
+    function openModalDelete(meetingId) {
+        document.getElementById('modalCourseNameDelete').textContent = "Apakah Anda yakin ingin mendaftar pada course: " + meetingId + "?";
+        document.getElementById('confirmationModalDelete').classList.remove('hidden');
     }
 
     function closeModalDelete() {

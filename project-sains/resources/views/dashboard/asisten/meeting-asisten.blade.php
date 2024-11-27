@@ -1,6 +1,6 @@
 @extends('dashboard.asisten.base-asisten')
 
-@section('title', 'SAINS - Pertemuan')
+@section('title', 'Unggah Pertemuan')
 
 @section('content')
 <div class="container mx-auto px-4">
@@ -10,7 +10,7 @@
         <div class="space-y-12 mt-10">
           <div class="border-b border-gray-900/10 pb-12">
             <h2 class="text-base/7 font-semibold text-gray-900">Unggah Topik Pertemuan</h2>
-            <p class="mt-1 text-sm/6 text-gray-600">Silahkan upload Topik Pertemuan sesuai dengan minggu pertemuan sekarang ini.</p>
+            <p class="mt-1 text-sm/6 text-gray-600">Silahkan unggah Topik Pertemuan sesuai dengan minggu pertemuan sekarang ini.</p>
             
 
             <div class="col-span-full mt-10">

@@ -96,8 +96,7 @@ class MeetingController extends Controller
     public function destroy(string $id)
     {
         $meeting = Meeting::findOrFail($id);
-        $meeting->delete();
-    
+        $meeting->delete();    
         return redirect()->route('asisten-group.index')->with('success', 'Pertemuan berhasil dihapus.');
     }
 }

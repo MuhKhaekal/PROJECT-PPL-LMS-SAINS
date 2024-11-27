@@ -24,27 +24,31 @@ class RegisteredUserController extends Controller
 
     /**
      * Handle an incoming registration request.
-     *
+     * 
      * @throws \Illuminate\Validation\ValidationException
      */
     public function store(Request $request): RedirectResponse
     {
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
+            'nim' => ['required', 'string', 'max:20', 'unique:users,nim'], // Validasi NIM
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
-
+    
         $user = User::create([
             'name' => $request->name,
-            'email' => $request->email,
+            'email' => $request->email, // Simpan NIM
+            'nim' => $request->nim, // Simpan NIM
             'password' => Hash::make($request->password),
         ]);
-
+    
         event(new Registered($user));
-
+    
         Auth::login($user);
-
-        return redirect(route('dashboard', absolute: false));
+    
+        return redirect(route('dashboard'));
     }
+    
+   
 }

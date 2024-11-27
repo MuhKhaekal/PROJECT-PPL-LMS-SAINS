@@ -20,4 +20,12 @@ class Meeting extends Model
     {
         return $this->hasMany(Course::class);
     }
+    public function materials()
+    {
+        return $this->hasMany(Material::class);
+    }
+    public function assignment()
+    {
+        return $this->hasMany(Assignment::class);
+    }
 }

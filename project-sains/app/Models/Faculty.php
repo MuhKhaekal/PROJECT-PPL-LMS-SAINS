@@ -15,4 +15,5 @@ class Faculty extends Model
     public function courses(){
         return $this->hasMany(Course::class);
     }
+
 }
