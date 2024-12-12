@@ -37,4 +37,9 @@ class Course extends Model
     {
         return $this->hasMany(Assignment::class);
     }
+    public function praktikangroups()
+    {
+    return $this->hasMany(PraktikanGroup::class, 'course_id');
+    }
+
 }

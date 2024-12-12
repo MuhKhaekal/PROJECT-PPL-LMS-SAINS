@@ -1,8 +1,10 @@
 <?php
 
 use App\Http\Controllers\AccountsController;
+use App\Http\Controllers\AdminAnnouncementController;
 use App\Http\Controllers\AdminCourseController;
 use App\Http\Controllers\AdminFacultyController;
+use App\Http\Controllers\AdminFaqController;
 use App\Http\Controllers\AdminUserController;
 use App\Http\Controllers\AnnouncementAsistenController;
 use App\Http\Controllers\AnnouncementController;
@@ -17,17 +19,26 @@ use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\VerifyEmailController;
 use App\Http\Controllers\StudyGroupController;
 use App\Http\Controllers\AsistenGroupController;
+use App\Http\Controllers\AsistenProfileController;
 use App\Http\Controllers\AssignmentChecksController;
 use App\Http\Controllers\AssignmentController;
 use App\Http\Controllers\CertificateController;
 use App\Http\Controllers\FaqAsistenController;
 use App\Http\Controllers\FaqController;
+use App\Http\Controllers\FillCertifcateController;
+use App\Http\Controllers\ListPraktikanController;
 use App\Http\Controllers\MaterialController;
 use App\Http\Controllers\PresensiController;
 use App\Http\Controllers\MeetingController;
+use App\Http\Controllers\PostTestController;
+use App\Http\Controllers\PreTestController;
 use App\Http\Controllers\ShowAssignmentController;
+use App\Http\Controllers\ShowFaqAdminController;
+use App\Http\Controllers\ShowFaqController;
 use App\Http\Controllers\ShowMaterialController;
 use App\Http\Controllers\SubmissionController;
+use App\Http\Controllers\UserProfileController;
+use App\Http\Controllers\WeeklyScoreController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
@@ -238,6 +249,17 @@ Route::middleware('auth')->group(function () {
         'update' => 'admincertificate.update',
         'destroy' => 'admincertificate.destroy',
     ]);
+    
+    Route::delete('/admincertificates', [CertificateController::class, 'destroyAll'])
+    ->middleware('admin')
+    ->name('admincertificate.destroyAll');
+
+    Route::get('/verificationCertificate', [FillCertifcateController::class, 'process'])->middleware('admin')->name('fillcertificate.process');
+    Route::post('/verificationCertificate', [FillCertifcateController::class, 'store'])->middleware('admin')->name('fillcertificate.store');
+    Route::delete('/verificationcertificates', [FillCertifcateController::class, 'destroyByType'])
+    ->middleware('admin')
+    ->name('fillcertificate.destroyByType');
+
     Route::resource('faq', FaqController::class)
     ->middleware('user')
     ->names([
@@ -271,6 +293,28 @@ Route::middleware('auth')->group(function () {
         'update' => 'faqasisten.update',
         'destroy' => 'faqasisten.destroy',
     ]);
+    Route::resource('showfaqasisten', ShowFaqController::class)
+    ->middleware('asisten')
+    ->names([
+        'index' => 'showfaqasisten.index',
+        'create' => 'showfaqasisten.create',
+        'store' => 'showfaqasisten.store',
+        'show' => 'showfaqasisten.show',         
+        'edit' => 'showfaqasisten.edit',
+        'update' => 'showfaqasisten.update',
+        'destroy' => 'showfaqasisten.destroy',
+    ]);
+    Route::resource('showfaqadmin', ShowFaqAdminController::class)
+    ->middleware('admin')
+    ->names([
+        'index' => 'showfaqadmin.index',
+        'create' => 'showfaqadmin.create',
+        'store' => 'showfaqadmin.store',
+        'show' => 'showfaqadmin.show',         
+        'edit' => 'showfaqadmin.edit',
+        'update' => 'showfaqadmin.update',
+        'destroy' => 'showfaqadmin.destroy',
+    ]);
     Route::resource('announcementasisten', AnnouncementAsistenController::class)
     ->middleware('asisten')
     ->names([
@@ -282,4 +326,104 @@ Route::middleware('auth')->group(function () {
         'update' => 'announcementasisten.update',
         'destroy' => 'announcementasisten.destroy',
     ]);
+
+    Route::resource('myprofileasisten', AsistenProfileController::class)
+    ->middleware('asisten')
+    ->names([
+        'index' => 'myprofileasisten.index',
+        'create' => 'myprofileasisten.create',
+        'store' => 'myprofileasisten.store',
+        'show' => 'myprofileasisten.show',         
+        'edit' => 'myprofileasisten.edit',
+        'update' => 'myprofileasisten.update',
+        'destroy' => 'myprofileasisten.destroy',
+    ]);
+    Route::resource('myprofile', UserProfileController::class)
+    ->middleware('user')
+    ->names([
+        'index' => 'myprofile.index',
+        'create' => 'myprofile.create',
+        'store' => 'myprofile.store',
+        'show' => 'myprofile.show',         
+        'edit' => 'myprofile.edit',
+        'update' => 'myprofile.update',
+        'destroy' => 'myprofile.destroy',
+    ]);
+    Route::resource('adminfaq', AdminFaqController::class)
+    ->middleware('admin')
+    ->names([
+        'index' => 'adminfaq.index',
+        'create' => 'adminfaq.create',
+        'store' => 'adminfaq.store',
+        'show' => 'adminfaq.show',         
+        'edit' => 'adminfaq.edit',
+        'update' => 'adminfaq.update',
+        'destroy' => 'adminfaq.destroy',
+    ]);
+    Route::resource('adminannouncement', AdminAnnouncementController::class)
+    ->middleware('admin')
+    ->names([
+        'index' => 'adminannouncement.index',
+        'create' => 'adminannouncement.create',
+        'store' => 'adminannouncement.store',
+        'show' => 'adminannouncement.show',         
+        'edit' => 'adminannouncement.edit',
+        'update' => 'adminannouncement.update',
+        'destroy' => 'adminannouncement.destroy',
+    ]);
+    Route::resource('daftarnilaipraktikan', ListPraktikanController::class)
+    ->middleware('asisten')
+    ->names([
+        'index' => 'daftarnilaipraktikan.index',
+        'create' => 'daftarnilaipraktikan.create',
+        'store' => 'daftarnilaipraktikan.store',
+        'show' => 'daftarnilaipraktikan.show',         
+        'edit' => 'daftarnilaipraktikan.edit',
+        'update' => 'daftarnilaipraktikan.update',
+        'destroy' => 'daftarnilaipraktikan.destroy',
+    ]);
+    Route::resource('pretest', PreTestController::class)
+    ->middleware('asisten')
+    ->names([
+        'index' => 'pretest.index',
+        'create' => 'pretest.create',
+        'store' => 'pretest.store',
+        'show' => 'pretest.show',         
+        'edit' => 'pretest.edit',
+        'update' => 'pretest.update',
+        'destroy' => 'pretest.destroy',
+    ]);
+    Route::resource('posttest', PostTestController::class)
+    ->middleware('asisten')
+    ->names([
+        'index' => 'posttest.index',
+        'create' => 'posttest.create',
+        'store' => 'posttest.store',
+        'show' => 'posttest.show',         
+        'edit' => 'posttest.edit',
+        'update' => 'posttest.update',
+        'destroy' => 'posttest.destroy',
+    ]);
+    Route::resource('nilaiperpekan', WeeklyScoreController::class)
+    ->middleware('asisten')
+    ->names([
+        'index' => 'nilaiperpekan.index',
+        'create' => 'nilaiperpekan.create',
+        'store' => 'nilaiperpekan.store',
+        'show' => 'nilaiperpekan.show',         
+        'edit' => 'nilaiperpekan.edit',
+        'update' => 'nilaiperpekan.update',
+        'destroy' => 'nilaiperpekan.destroy',
+    ]);
+
+    Route::delete('/admincertificates', [CertificateController::class, 'destroyAll'])
+    ->middleware('admin')
+    ->name('admincertificate.destroyAll');
+
+    // Route::put('pretest/{pretest}', [PreTestController::class, 'updateAll'])->name('pretest.updateAll');
+    Route::put('pretest/update/{courseId?}', [PreTestController::class, 'updateAll'])->name('pretest.updateAll');
+    Route::put('posttest/update/{courseId?}', [PostTestController::class, 'updateAll'])->name('posttest.updateAll');
+    Route::put('nilaiperpekan/update/{courseId?}', [WeeklyScoreController::class, 'updateAll'])->name('nilaiperpekan.updateAll');
+    Route::get('/export-nilairekap', [ListPraktikanController::class, 'exportToExcel'])->name('nilaiperpekan.exportToExcel');
+
 });

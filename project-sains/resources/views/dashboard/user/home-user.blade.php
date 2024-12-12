@@ -10,8 +10,8 @@
             <h1 class="text-4xl text-white font-poppins font-semibold text-center md:text-left">Bersama SAINS</h1>
             <p class="text-1xl text-white font-poppins mt-5 text-center md:text-left">SAINS adalah program pengajaran Al-Qur'an yang membantu mahasiswa Universitas Hasanuddin (Unhas) meraih cita-cita dan mewujudkan kampus bebas buta aksara.</p>
             <div class="m-5 flex flex-col md:flex-row md:m-0 md:mt-5">
-                <a href="" class="px-10 py-3 flex justify-center bg-btn-primary rounded-lg">Lihat Kursus</a>
-                <a href="" class="px-10 py-3 flex justify-center text-white ">Lihat Akun Belajar -></a>
+                <a href="{{ route('study-group.index') }}" class="px-10 py-3 flex justify-center bg-btn-primary rounded-lg">Lihat Kursus</a>
+                <a href="{{ route('myprofile.index') }}" class="px-10 py-3 flex justify-center text-white ">Lihat Akun Belajar -></a>
             </div>
         </div>
         <div class="md-flex-1 lg:flex-1 flex justify-end" data-aos="fade-left">
@@ -124,74 +124,7 @@
     </div>
 </section>
 
-<section>
-    <div class="container mx-auto px-4 mt-16 font-poppins md:flex md:items-center">
-        <div class="md:flex-1" data-aos="fade-right">
-            <h1 class="text-2xl">Pertanyaan yang sering diajukan</h1>
-            <p class="hidden md:block">Masih bingung atau ragu? Hubungi kami di nomor  +6288 999 222 333</p>
-        </div>
-        <div class="md:flex-1" data-aos="fade-left">
-            <div class="border-b border-gray-300">
-                <button class="w-full flex justify-between items-center text-left py-4" onclick="toggleAccordion('accordion1', 'icon1')">
-                    <span class="font-semibold">Apakah kursus ini benar-benar gratis?</span>
-                    <span id="icon1" class="text-2xl font-bold">+</span>
-                </button>
-                <div id="accordion1" class="accordion-content hidden" style="max-height: 0;">
-                    <p class="p-4 text-gray-700">
-                        Kursus yang disediakan bisa diakses gratis untuk menunjang kebutuhan dalam bidang kependidikan.
-                    </p>
-                </div>
-            </div>
-            <div class="border-b border-gray-300">
-                <button class="w-full flex justify-between items-center text-left py-4" onclick="toggleAccordion('accordion2', 'icon2')">
-                    <span class="font-semibold">Untuk siapa kursus ini?</span>
-                    <span id="icon2" class="text-2xl font-bold">+</span>
-                </button>
-                <div id="accordion2" class="accordion-content hidden" style="max-height: 0;">
-                    <p class="p-4 text-gray-700">
-                        Kursus yang disediakan bisa diakses gratis untuk menunjang kebutuhan dalam bidang kependidikan.
-                    </p>
-                </div>
-            </div>
-            <div class="border-b border-gray-300">
-                <button class="w-full flex justify-between items-center text-left py-4" onclick="toggleAccordion('accordion3', 'icon3')">
-                    <span class="font-semibold">Apakah kursus ini bersertifikat?</span>
-                    <span id="icon3" class="text-2xl font-bold">+</span>
-                </button>
-                <div id="accordion3" class="accordion-content hidden" style="max-height: 0;">
-                    <p class="p-4 text-gray-700">
-                        Kursus yang disediakan bisa diakses gratis untuk menunjang kebutuhan dalam bidang kependidikan.
-                    </p>
-                </div>
-            </div>
-            <div class="border-b border-gray-300">
-                <button class="w-full flex justify-between items-center text-left py-4" onclick="toggleAccordion('accordion4', 'icon4')">
-                    <span class="font-semibold">Sampai kapan kursus ini berakhir?</span>
-                    <span id="icon4" class="text-2xl font-bold">+</span>
-                </button>
-                <div id="accordion4" class="accordion-content hidden" style="max-height: 0;">
-                    <p class="p-4 text-gray-700">
-                        Kursus yang disediakan bisa diakses gratis untuk menunjang kebutuhan dalam bidang kependidikan.
-                    </p>
-                </div>
-            </div>
-            <div class="border-b border-gray-300">
-                <button class="w-full flex justify-between items-center text-left py-4" onclick="toggleAccordion('accordion5', 'icon5')">
-                    <span class="font-semibold">Apakah ada penyaluran kerja setelah lulus?</span>
-                    <span id="icon5" class="text-2xl font-bold">+</span>
-                </button>
-                <div id="accordion5" class="accordion-content hidden" style="max-height: 0;">
-                    <p class="p-4 text-gray-700">
-                        Kursus yang disediakan bisa diakses gratis untuk menunjang kebutuhan dalam bidang kependidikan.
-                    </p>
-                </div>
-            </div>
-        </div>
 
-    </div>
-
-
-</section>
 
 
 @endsection

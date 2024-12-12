@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Faqs;
+use App\Models\FaqShows;
 use Illuminate\Http\Request;
 
 class FaqAsistenController extends Controller
@@ -11,7 +13,15 @@ class FaqAsistenController extends Controller
      */
     public function index()
     {
-        return view('dashboard.asisten.faq-asisten');
+        $faqs = Faqs::all();
+        $faqShows = FaqShows::join('faqs', 'faq_shows.faq_id', '=', 'faqs.id')
+        ->select('faqs.question', 'faqs.answer', 'faq_shows.id', 'faq_shows.faq_id')
+        ->get();
+
+        $faqCount = FaqShows::count();
+
+        $checkFaq = $faqShows->pluck('faq_id')->toArray();
+        return view('dashboard.asisten.faq-asisten', compact('faqShows', 'faqs', 'checkFaq', 'faqCount'));
     }
 
     /**
@@ -19,7 +29,7 @@ class FaqAsistenController extends Controller
      */
     public function create()
     {
-        //
+        
     }
 
     /**
@@ -43,7 +53,8 @@ class FaqAsistenController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $faq = Faqs::findOrFail($id);
+        return view('dashboard.asisten.create-answer', compact('faq'));
     }
 
     /**
@@ -51,7 +62,16 @@ class FaqAsistenController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $faq = Faqs::findOrFail($id);
+        
+        $request->validate([
+            'answer' => 'required|string|max:255'
+        ]);
+
+        $faq->update($request->only('answer'));
+
+
+        return redirect()->route('faqasisten.index')->with('success', 'Jawaban berhasil ditambahkan');
     }
 
     /**
@@ -59,6 +79,8 @@ class FaqAsistenController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $faq = Faqs::findOrFail($id);
+        $faq->delete();    
+        return redirect()->route('faqasisten.index')->with('success', 'Pertanyaan berhasil dihapus.');
     }
 }

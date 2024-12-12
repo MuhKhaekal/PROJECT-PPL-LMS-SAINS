@@ -10,8 +10,8 @@
     
 
 
-<div class="container mx-auto px-4 min-h-screen -mt-64 flex flex-col justify-center font-poppins">
-  <div class="text-center mt-60 mb-5 md:mt-32 font-semibold">
+<div class="container mx-auto px-4 min-h-screen flex flex-col justify-center font-poppins">
+  <div class="text-center mt-60 mb-5 md:mt-32 lg:mt-12 font-semibold">
     <p>Presensi Kehadiran</p>   
   </div>
   <div class="text-center mb-5">

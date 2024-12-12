@@ -38,11 +38,10 @@
         </div>
     </div>
 
-    <a href="{{ route('assignment.create', ['meeting_id' => $meetingId  ]) }}" >
-        <div class="text-center bg-primary rounded-md pb-2 mt-10">
-                <h1 class="text-white">+ Tambahkan Tugas</h1>
-        </div>
-    </a>
+    <div class="bg-primary rounded-md text-white flex justify-center py-2">
+        <a href="{{ route('assignment.create', ['meeting_id' => $meetingId  ]) }}">+ Tambah Tugas</a>
+    </div>
+    
 </div>
 
 <script>

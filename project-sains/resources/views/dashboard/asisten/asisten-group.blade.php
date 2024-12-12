@@ -11,6 +11,56 @@
             <p class="font-poppins text-white text-sm font-semibold md:text-5xl md:my-48">{{$courseName->course_name }}</p>
         </div>
 
+        
+    @if (session('success'))
+        <div id="success-message" class="relative bg-green-500 text-white p-4 rounded-md mb-4 mt-10" data-aos="fade">
+            {{ session('success') }}
+        </div>
+    @endif
+
+        <div class="flex border rounded-md my-2">
+            <img src="{{ asset('images/peserta_presensi.png') }}" alt=""  class="size-8 md:size-16">
+            <a href="{{ route('daftarnilaipraktikan.index') }}" class="flex items-center mx-3 font-semibold" >Akumulasi Nilai</a>
+        </div>
+        @if ($checkPreTest->where('course_id', $courseName->id)->isNotEmpty())
+            <div class="flex border rounded-md my-2">
+                <img src="{{ asset('images/peserta_presensi.png') }}" alt=""  class="size-8 md:size-16">
+                <a href="{{ route('pretest.edit', ['pretest' => $courseName->id ]) }}" class="flex items-center mx-3 font-semibold" > Daftar Nilai Pre-Test</a>
+            </div>
+        @else
+            <div class="flex border rounded-md my-2">
+                <img src="{{ asset('images/peserta_presensi.png') }}" alt=""  class="size-8 md:size-16">
+                <a href="{{ route('pretest.index') }}" class="flex items-center mx-3 font-semibold" > Daftar Nilai Pre-Test</a>
+            </div>
+        @endif
+
+        @if ($checkWeeklyScore->where('course_id', $courseName->id)->isNotEmpty())
+        <div class="flex border rounded-md my-2">
+            <img src="{{ asset('images/peserta_presensi.png') }}" alt=""  class="size-8 md:size-16">
+            <a href="{{ route('nilaiperpekan.edit', ['nilaiperpekan' => $courseName->id ]) }}" class="flex items-center mx-3 font-semibold" > Daftar Nilai Per-pekan</a>
+        </div>
+        @else
+            <div class="flex border rounded-md my-2">
+                <img src="{{ asset('images/peserta_presensi.png') }}" alt=""  class="size-8 md:size-16">
+                <a href="{{ route('nilaiperpekan.index') }}" class="flex items-center mx-3 font-semibold" > Daftar Nilai Per-pekan</a>
+            </div>
+        @endif
+
+        @if ($checkPostTest->where('course_id', $courseName->id)->isNotEmpty())
+            <div class="flex border rounded-md my-2">
+                <img src="{{ asset('images/peserta_presensi.png') }}" alt=""  class="size-8 md:size-16">
+                <a href="{{ route('posttest.edit', ['posttest' => $courseName->id ]) }}" class="flex items-center mx-3 font-semibold" > Daftar Nilai Post-Test</a>
+            </div>
+        @else
+            <div class="flex border rounded-md my-2">
+                <img src="{{ asset('images/peserta_presensi.png') }}" alt=""  class="size-8 md:size-16">
+                <a href="{{ route('posttest.index') }}" class="flex items-center mx-3 font-semibold" > Daftar Nilai Post-Test</a>
+            </div>
+        @endif
+
+
+
+
         <div class="md:flex-1">
 
             @foreach ($meetings as $meeting)
@@ -74,11 +124,28 @@
                     </div>
                 </div>
             @endforeach
-            <a href="{{ route('pertemuan.create') }}" >
-                <div class="text-center bg-primary rounded-md pb-2" data-aos="fade-up">
-                        <h1 class="text-white text-4xl mt-10">+</h1>
+
+            @if($certificate)
+                <div class="border border-gray-300 rounded-md p-3 mt-2">
+                    <button class="w-full flex items-center text-left py-4">
+                        <span><img src="{{ asset('images/certifikat.png') }}" alt="" class="w-10 me-4"></span>
+                        <a href="{{ asset($certificate->certificate_verification_name) }}">Klaim Sertifikat: Keikutsertaan Peserta</a>
+                    </button>
                 </div>
-            </a>
+            @endif
+        
+            @if($personCertificate)
+                <div class="border border-gray-300 rounded-md p-3 mt-2">
+                    <button class="w-full flex items-center text-left py-4">
+                        <span><img src="{{ asset('images/certifikat.png') }}" alt="" class="w-10 me-4"></span>
+                        <a href="{{ asset($personCertificate->certificate_verification_name) }}">Klaim Sertifikat: <span class="italic font-semibold">Peserta Terbaik</span></a>
+                    </button>
+                </div>
+            @endif                
+
+            <div class="bg-primary rounded-md text-white flex justify-center py-2">
+                <a href="{{ route('pertemuan.create') }}">+ Tambah Pertemuan</a>
+            </div>
         </div>
     </div>
 

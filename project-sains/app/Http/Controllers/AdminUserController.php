@@ -6,6 +6,7 @@ use App\Models\AssignmentCheck;
 use App\Models\PraktikanGroup;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class AdminUserController extends Controller
 {
@@ -44,13 +45,21 @@ public function index(Request $request)
      */
     public function store(Request $request)
     {
-        $request->validate([
+        $validator = Validator::make($request->all(), [
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255',
             'nim' => 'required|size:10',
             'role' => 'required',
-            'password' => 'required'
+            'password' => 'required|min:8'
+        ], [
+            'nim.size' => 'Jumlah NIM tidak sesuai',
+            'password' => 'Jumlah Passsword minimal 8'
         ]);
+
+        
+        if ($validator->fails()) {
+            return back()->withErrors($validator)->withInput();
+        }
     
         // dd($request->all());
         User::create([
@@ -61,7 +70,7 @@ public function index(Request $request)
             'password' => bcrypt($request->input('password')) ,
         ]);
 
-        return redirect()->route('adminuser.index');
+        return redirect()->route('adminuser.index')->with('success', 'Akun telah berhasil dibuat');
     }
 
     /**

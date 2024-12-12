@@ -4,7 +4,17 @@
 
 @section('content')
 <h1 class="text-3xl font-bold">BUAT AKUN</h1>
+@if ($errors->any())
+<div class="bg-red-500 text-white p-4 rounded-md mb-4 mt-10" data-aos="fade">
+    <ul>
+        @foreach ($errors->all() as $error)
+            <li>{{ $error }}</li>
+        @endforeach
+    </ul>
+</div>
+@endif
 <form action="{{ route('adminuser.store') }}" method="POST">
+    
     @csrf
     <div class=" grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
         <div class="col-span-full mt-10">

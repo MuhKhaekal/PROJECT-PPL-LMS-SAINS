@@ -47,11 +47,11 @@
 <body>
     @include('dashboard.user.navigation-user')
 
-    <main>
+    <main class="font-poppins">
         @yield('content')
     </main>
 
-    <footer data-aos="fade">
+    <footer>
         <div class=" bg-primary w-full mt-10 pt-5 flex flex-col justify-center font-poppins">
             <div class="container mx-auto px-4 lg:flex">
                 <div class="lg:flex-4 lg:w-2/5">

@@ -2,10 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Certificate;
+use App\Models\CertificateVerification;
 use Illuminate\Http\Request;
 use App\Models\Faculty;
 use App\Models\PraktikanGroup;
 use App\Models\Meeting;
+use App\Models\Posttest;
+use App\Models\Pretest;
+use App\Models\WeeklyScore;
 use Illuminate\Support\Facades\Auth;
 
 class AsistenGroupController extends Controller
@@ -18,6 +23,9 @@ class AsistenGroupController extends Controller
         $facultyList = Faculty::with('courses')->get();
         $userId = Auth::id();
         $checkGroup = PraktikanGroup::all();
+        $checkPreTest = Pretest::all();
+        $checkPostTest = Posttest::all();
+        $checkWeeklyScore = WeeklyScore::all();
         $courseName = PraktikanGroup::where('user_id', $userId)
         ->join('course', 'praktikangroup.course_id', '=', 'course.id')
         ->select('course.id', 'course.course_name')
@@ -29,11 +37,15 @@ class AsistenGroupController extends Controller
                 ->select('meeting.id','meeting.meeting_name', 'meeting.meeting_topic', 'meeting.description', 'meeting.course_id')
                 ->distinct()
                 ->get();
+                $personCertificate = CertificateVerification::whereNot('type', 'Sertifikat Asisten Umum')->where('user_id', $userId)->first();    
+                $certificate = CertificateVerification::where('user_id', $userId)->first(); 
         } else {
             // Jika tidak ada courseName, set meetings sebagai koleksi kosong
             $meetings = collect();
+            $certificate = collect();
+            $personCertificate = collect();
         }
-        return view('dashboard.asisten.asisten-group', compact('facultyList', 'userId', 'checkGroup', 'courseName', 'meetings'));
+        return view('dashboard.asisten.asisten-group', compact('facultyList', 'userId', 'checkGroup', 'checkPreTest', 'checkPostTest', 'checkWeeklyScore', 'courseName', 'meetings', 'certificate', 'personCertificate'));
     }
 
     /**

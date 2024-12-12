@@ -3,10 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\Assignment;
+use App\Models\Certificate;
+use App\Models\CertificateVerification;
 use App\Models\Faculty;
 use App\Models\Material;
 use App\Models\PraktikanGroup;
 use App\Models\Meeting;
+use App\Models\Presence;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -35,9 +38,14 @@ class StudyGroupController extends Controller
                 ->select('meeting.id', 'meeting.meeting_name', 'meeting.meeting_topic', 'meeting.description', 'meeting.course_id')
                 ->distinct()
                 ->get();
+
+            $totalPresences = Presence::where('user_id', $userId)->where('status', 'hadir')->count();
             
             $meetingIds = $meetings->pluck('id');
-            $materials = Material::where('course_id', $courseName->id)->get();    
+            $materials = Material::where('course_id', $courseName->id)->get();
+            
+            $personCertificate = CertificateVerification::whereNot('type', 'Sertifikat Peserta Umum')->where('user_id', $userId)->first();    
+            $certificate = CertificateVerification::where('user_id', $userId)->first();    
             $assignments = Assignment::where('course_id', $courseName->id)->get();  
             
         } else {
@@ -45,10 +53,13 @@ class StudyGroupController extends Controller
             $meetings = collect();
             $materials = collect();    
             $assignments = collect();  
+            $certificate = collect();
+            $personCertificate = collect();
+            $totalPresences = collect();
         }
   
         
-        return view('dashboard.user.study-group-user', compact('facultyList', 'userId', 'checkGroup', 'courseName', 'meetings', 'materials', 'assignments'));
+        return view('dashboard.user.study-group-user', compact('facultyList', 'userId', 'checkGroup', 'courseName', 'meetings', 'materials', 'assignments', 'personCertificate', 'certificate', 'totalPresences'));
     }
     
 

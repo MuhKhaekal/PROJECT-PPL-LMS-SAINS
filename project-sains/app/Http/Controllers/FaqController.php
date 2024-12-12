@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Faqs;
+use App\Models\FaqShows;
 use Illuminate\Http\Request;
 
 class FaqController extends Controller
@@ -11,7 +13,8 @@ class FaqController extends Controller
      */
     public function index()
     {
-        return view('dashboard.user.faq');
+        $faqShows = FaqShows::join('faqs', 'faq_shows.faq_id', '=', 'faqs.id')->select('faqs.question', 'faqs.answer', 'faq_shows.id')->get();
+        return view('dashboard.user.faq', compact('faqShows'));
     }
 
     /**
@@ -27,7 +30,15 @@ class FaqController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'question' => 'required|string|max:255'
+        ]);
+
+        Faqs::create([
+            'question' => $request->input('question')
+        ]);
+
+        return redirect()->route('faq.index')->with('success', 'Pertanyaan berhasil ditambahkan');
     }
 
     /**

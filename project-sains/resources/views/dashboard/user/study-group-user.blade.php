@@ -44,6 +44,30 @@
                     </div>
                 </div>
             @endforeach
+
+
+            @if ($totalPresences >= 8)
+            @if($certificate)
+                <div class="border border-gray-300 rounded-md p-3 mt-2">
+                    <button class="w-full flex items-center text-left py-4">
+                        <span><img src="{{ asset('images/certifikat.png') }}" alt="" class="w-10 me-4"></span>
+                        <a href="{{ asset($certificate->certificate_verification_name) }}">Klaim Sertifikat: Keikutsertaan Peserta</a>
+                    </button>
+                </div>
+            @endif
+        
+            @if($personCertificate)
+                <div class="border border-gray-300 rounded-md p-3 mt-2">
+                    <button class="w-full flex items-center text-left py-4">
+                        <span><img src="{{ asset('images/certifikat.png') }}" alt="" class="w-10 me-4"></span>
+                        <a href="{{ asset($personCertificate->certificate_verification_name) }}">Klaim Sertifikat: <span class="italic font-semibold">Peserta Terbaik</span></a>
+                    </button>
+                </div>
+            @endif                
+        @endif
+
+
+        
         </div>
     </div>
 

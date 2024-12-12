@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Announcement;
 use Illuminate\Http\Request;
 
 class AnnouncementController extends Controller
@@ -11,7 +12,9 @@ class AnnouncementController extends Controller
      */
     public function index()
     {
-        return view('dashboard.user.announcement');
+
+        $announcements = Announcement::join('users', 'announcements.user_id', '=', 'users.id')->get();
+        return view('dashboard.user.announcement', compact('announcements'));
     }
 
     /**
