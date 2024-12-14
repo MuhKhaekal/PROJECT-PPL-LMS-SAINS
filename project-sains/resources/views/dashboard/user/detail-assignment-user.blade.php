@@ -9,17 +9,28 @@
         
         <h1 class="mt-10 text-4xl  underline" data-aos="fade-right">{{ $assignment->assignment_name }}</h1>
 
-        <p class="mt-3 text-justify" data-aos="fade">{{ $assignment->description }} Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque amet dignissimos aut consequuntur, laboriosam ipsam. Quos quibusdam iure laborum aperiam quo suscipit atque eligendi voluptate maiores, sapiente cum sed accusantium consectetur, consequatur cumque nisi recusandae repellendus. Consectetur, explicabo inventore? Neque pariatur, earum dolore aut maiores saepe adipisci optio officia ipsam assumenda itaque quidem et rerum unde asperiores sequi placeat illo harum tempore. Expedita minima dolorem quos, eum consequuntur adipisci minus pariatur sunt dolores placeat fuga corporis veritatis? Ipsum ab illum quia placeat alias labore nam minima, mollitia pariatur praesentium incidunt officiis beatae! Odit, animi tempora qui voluptate eveniet possimus? Enim.</p>
+        <p class="mt-3 text-justify" data-aos="fade">{{ $assignment->description }}</p>
         <div id="pdfViewer" class="mt-4" data-aos="fade-up">
             <iframe id="pdfFrame" src="{{ $base64Pdf }}" style="width: 100%; height: 500px;" frameborder="0"></iframe>
         </div> 
-        
 
+        @if ($checkSubmission->isNotEmpty())
+        <div class="mt-5">
+            <p class="text-gray-400 italic">Anda telah melakukan submit tugas, apakah anda ingin membatalkan?</p>
+        </div>    
+        <form action="{{ route('assignmentcheck.destroy', ['assignmentcheck' => $assignment->id]) }}" method="POST">
+            @csrf
+            @method('DELETE')
+            <button class="py-3 bg-primary mt-5 text-white px-5 rounded-md active:bg-slate-500" data-aos="fade-right" type="submit">
+                Batalkan Pengunggahan
+            </button>
+        </form>
+        @else
         <div class=" border-gray-300" >
             <button class="py-3 bg-primary mt-5 text-white px-5 rounded-md active:bg-slate-500" value="tes" onclick="toggleAccordion('accordion1', 'icon1')" data-aos="fade-right">
             Unggah Tugas
             </button>
-            <div id='accordion1' class="accordion-content hidden mt-5" style="max-height: 0;">
+            <div id='accordion1' class="accordion-content hidden mt-5 p-10" style="max-height: 0;">
                 <form action="{{ route('assignmentcheck.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <input type="hidden" value="{{ $assignment->id }}" name="assignment_id">
@@ -34,7 +45,7 @@
                             <div class="mt-4 flex text-sm/6 text-gray-600">
                             <label for="assignment_check_file_name" class="relative cursor-pointer rounded-md bg-white font-semibold text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2 hover:text-indigo-500">
                                 <span>Upload a file</span>
-                                <input id="assignment_check_file_name" name="assignment_check_file_name" type="file" class="sr-only">
+                                <input id="assignment_check_file_name" name="assignment_check_file_name" type="file" class="sr-only" accept=".pdf">
                             </label>
                             <p class="pl-1">or drag and drop</p>
                             </div>
@@ -54,7 +65,7 @@
                             <div class="bg-white rounded-lg p-6 shadow-lg max-w-md w-full">
 
                                 <h2 class="text-lg font-semibold mb-4">Konfirmasi Pengunggahan</h2>
-                                <p id="modalCourseName" class="mb-4">Apakah data pertemuan sudah benar?</p>
+                                <p id="modalCourseName" class="mb-4">Apakah data tugas sudah benar?</p>
                                 <div class="flex justify-end">
                                     <button type="button" class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded mr-2" onclick="closeModal()">Batal</button>
                                     <button type="submit" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">Konfirmasi</button>
@@ -66,6 +77,10 @@
 
             </div>
         </div>
+        @endif
+        
+
+
 
     
 </div>

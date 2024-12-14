@@ -28,7 +28,7 @@
               <div class="col-span-full">
                 <label for="description" class="block text-sm/6 font-medium text-gray-900">Deskripsi</label>
                 <div class="mt-2">
-                  <textarea id="description" name="description" rows="3" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm/6">"{{ $material->description }}"</textarea>
+                  <textarea id="description" name="description" rows="3" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm/6">{{ $material->description }}</textarea>
                 </div>
                 <p class="mt-3 text-sm/6 text-gray-600">Tulis deskripsi singkat mengenai materi yang akan dibahas pada pertemuan kali ini</p>
               </div>
@@ -43,12 +43,12 @@
                     <div class="mt-4 flex text-sm/6 text-gray-600">
                       <label for="material_file_name" class="relative cursor-pointer rounded-md bg-white font-semibold text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2 hover:text-indigo-500">
                         <span>Upload a file</span>
-                        <input id="material_file_name" name="material_file_name" type="file" class="sr-only">
+                        <input id="material_file_name" name="material_file_name" type="file" class="sr-only" accept=".pdf">
                       </label>
                       <p class="pl-1">or drag and drop</p>
                     </div>
                     <p class="text-xs/5 text-gray-600">PDF up to 10MB</p>
-                    <p id="fileLinkContainer" class="mt-3 text-sm underline text-blue-600">{{ $material->material_file_name }}"</p>
+                    <a id="fileLinkContainer" href="{{ asset($material->material_file_name) }}" class="mt-3 text-sm underline text-blue-600" target="blank_">File Lampiran</a>
                     <p class="errorContainer text-red-600"></p>
 
 

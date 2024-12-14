@@ -102,7 +102,7 @@ class MaterialController extends Controller
             'description' => $request->input('description'),
         ]);
 
-        return redirect()->route('asisten-group.index')->with('success', 'Presensi berhasil disimpan.');
+        return redirect()->route('asisten-group.index')->with('success', 'Pengunggahan Materi berhasil.');
     }
 
     /**
@@ -168,9 +168,8 @@ class MaterialController extends Controller
     public function destroy(string $id)
     {
         $material = Material::findOrFail($id);
-        $meetingId = $material->meeting_id;
         
         $material->delete();
-        return redirect()->route('materi.index', ['meeting_id' => $meetingId])->with('success', 'Pertemuan berhasil dihapus.');
+        return redirect()->route('asisten-group.index')->with('success', 'Materi berhasil dihapus.');
     }
 }

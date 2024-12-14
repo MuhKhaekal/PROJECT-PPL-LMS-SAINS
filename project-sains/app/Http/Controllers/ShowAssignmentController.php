@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Assignment;
+use App\Models\AssignmentCheck;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -44,8 +45,9 @@ class ShowAssignmentController extends Controller
         $pdfContent = file_get_contents($filePath);
         $base64Pdf = 'data:application/pdf;base64,' . base64_encode($pdfContent);
         $userId = Auth::id();
+        $checkSubmission = AssignmentCheck::where('assignment_id', $assignment->id)->where('user_id', $userId)->get();
 
-        return view('dashboard.user.detail-assignment-user', compact('assignment', 'base64Pdf', 'userId'));
+        return view('dashboard.user.detail-assignment-user', compact('assignment', 'base64Pdf', 'userId', 'checkSubmission'));
     }
 
     /**

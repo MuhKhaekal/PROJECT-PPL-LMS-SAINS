@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\AssignmentCheck;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use PhpParser\Node\Expr\AssignRef;
 
 class AssignmentChecksController extends Controller
 {
@@ -51,7 +53,7 @@ class AssignmentChecksController extends Controller
             'assignment_check_file_name' => $filePath,
         ]);
 
-        return redirect()->route('study-group.index')->with('success', 'Presensi berhasil disimpan.');
+        return redirect()->route('study-group.index')->with('success', 'Submit tugas berhasil');
     }
 
     /**
@@ -83,6 +85,10 @@ class AssignmentChecksController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $userId = Auth::id();
+        $assignmentid = AssignmentCheck::where('assignment_id', $id)->where('user_id', $userId)->first();
+        $assignmentid->delete();
+        
+        return redirect()->route('study-group.index')->with('success', 'Submit tugas berhasil dibatalkan');
     }
 }

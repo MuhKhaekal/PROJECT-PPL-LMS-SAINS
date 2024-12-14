@@ -103,7 +103,7 @@ class AssignmentController extends Controller
             'description' => $request->input('description'),
         ]);
 
-        return redirect()->route('asisten-group.index')->with('success', 'Presensi berhasil disimpan.');
+        return redirect()->route('asisten-group.index')->with('success', 'File tugas berhasil diunggah');
     }
 
     /**
@@ -169,7 +169,7 @@ class AssignmentController extends Controller
         $assignment->description = $request->input('description');
         $assignment->save();
     
-        return redirect()->route('asisten-group.index')->with('success', 'Pertemuan berhasil diperbarui.');
+        return redirect()->route('asisten-group.index')->with('success', 'File tugas berhasil diperbarui.');
     }
 
     /**
@@ -178,9 +178,8 @@ class AssignmentController extends Controller
     public function destroy(string $id)
     {
         $assignment = Assignment::findOrFail($id);
-        $meetingId = $assignment->meeting_id;
         
         $assignment->delete();
-        return redirect()->route('assignment.index', ['meeting_id' => $meetingId])->with('success', 'Pertemuan berhasil dihapus.');
+        return redirect()->route('asisten-group.index')->with('success', 'File tugas berhasil dihapus.');
     }
 }

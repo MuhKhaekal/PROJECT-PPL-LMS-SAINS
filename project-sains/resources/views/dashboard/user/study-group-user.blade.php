@@ -11,6 +11,12 @@
             <p class="font-poppins text-white text-sm font-semibold md:text-5xl md:my-48">{{$courseName->course_name}}</p>
         </div>
 
+        @if (session('success'))
+        <div id="success-message" class="relative bg-green-500 text-white p-4 rounded-md mb-4 mt-10" data-aos="fade">
+            {{ session('success') }}
+        </div>
+        @endif
+
 
         <div class="md:flex-1" data-aos="fade-left">
             @foreach ($meetings as $meeting)

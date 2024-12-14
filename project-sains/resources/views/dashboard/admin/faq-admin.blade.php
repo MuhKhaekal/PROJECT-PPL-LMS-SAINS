@@ -3,7 +3,7 @@
 @section('title', 'SAINS - E-Certificate')
 
 @section('content')
-<h1 class="text-3xl font-bold bg-gray-500 w-fit px-5 py-2  rounded-md shadow-md text-white">KELOLA FAQ</h1>
+<h1 class="text-3xl font-bold bg-yellow-400 w-fit px-5 py-2  rounded-md shadow-md text-primary">KELOLA FAQ</h1>
 
 
 

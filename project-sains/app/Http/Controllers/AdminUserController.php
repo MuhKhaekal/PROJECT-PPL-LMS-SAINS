@@ -139,7 +139,7 @@ public function index(Request $request)
         $user = User::findOrFail($id);
         $user->update($request->only('name', 'email', 'nim', 'role', bcrypt('password')));
     
-        return redirect()->route('adminuser.index')->with('success', 'Pertemuan berhasil diperbarui.');
+        return redirect()->route('adminuser.index')->with('success', 'Akun telah berhasil diperbarui.');
     }
 
     /**
@@ -149,6 +149,6 @@ public function index(Request $request)
     {
         $user = User::findOrFail($id);
         $user->delete();    
-        return redirect()->route('adminuser.index');
+        return redirect()->route('adminuser.index')->with('success', 'Akun telah berhasil dihapus');
     }
 }

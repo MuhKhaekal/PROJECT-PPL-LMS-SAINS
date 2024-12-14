@@ -69,7 +69,7 @@
                         </div>
                     </div>
                     <div class="hidden lg:block text-white font-light text-sm lg:mb-10">
-                        <p>Bangun dan wujudkan cita bersama edufree</p>
+                        <p>Bangun dan wujudkan cita bersama SAINS</p>
                     </div>
                     <div class="bg-btn-primary rounded-md p-4 text-sm flex flex-col lg:flex-row lg:p-2 me-10">
                         <p class="text-center p-2">Email: sainsunhas@unhas.ac.id</p>

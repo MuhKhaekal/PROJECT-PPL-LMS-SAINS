@@ -6,7 +6,7 @@
 
 <div class="container mx-auto px-4 min-h-screen font-poppins">
     <h1 class="text-center m-5 font-bold">Daftar Materi Pertemuan 1</h1>
-    
+    @if ($materials->isNotEmpty())
     @foreach ($materials as $material)
     <div class="border-b border-gray-300 flex items-center">
         <button class="w-full flex items-center text-left py-4">
@@ -17,10 +17,17 @@
         <form action="{{ route('materi.destroy', $material->id) }}" method="POST" class="inline">
             @csrf
             @method('DELETE')
-            <button type="button" onclick="openModalDelete({{ $material->id }}, '{{ $material->material_name }}')" class="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600">Hapus</button>
+            <button type="submit" class="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600">Hapus</button>
         </form>
     </div>
-    @endforeach
+    @endforeach        
+    @else
+    <div class="flex justify-center my-5">
+        <p class="text-gray-400 italic">Belum ada materi yang diunggah</p>
+    </div>
+    @endif
+    
+
     
     <div id="confirmationModalDelete" class="fixed z-10 inset-0 overflow-y-auto hidden">
         <div class="flex items-center justify-center min-h-screen">
