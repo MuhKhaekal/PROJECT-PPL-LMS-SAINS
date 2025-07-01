@@ -25,6 +25,8 @@ class UserFactory extends Factory
     {
         return [
             'name' => fake()->name(),
+            'nim' => 'H' . $this->faker->unique()->numerify('071221####'),
+            'role' => $this->faker->randomElement(['user','asisten', 'admin']),
             'email' => fake()->unique()->safeEmail(),
             'email_verified_at' => now(),
             'password' => static::$password ??= Hash::make('password'),
