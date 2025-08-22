@@ -425,5 +425,6 @@ Route::middleware('auth')->group(function () {
     Route::put('posttest/update/{courseId?}', [PostTestController::class, 'updateAll'])->name('posttest.updateAll');
     Route::put('nilaiperpekan/update/{courseId?}', [WeeklyScoreController::class, 'updateAll'])->name('nilaiperpekan.updateAll');
     Route::get('/export-nilairekap', [ListPraktikanController::class, 'exportToExcel'])->name('nilaiperpekan.exportToExcel');
+    Route::get('nilaiperpekan/input', [WeeklyScoreController::class, 'input'])->name('nilaiperpekan.input');
 
 });

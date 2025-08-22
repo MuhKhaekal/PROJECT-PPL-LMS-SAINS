@@ -119,7 +119,21 @@
                                     <p class="ms-3 font-semibold md:ms-0">Unggah Tugas</p>
                                 </a>
                             </div>
-
+                            @if ($checkWeeklyScore->where('course_id', $courseName->id)->isNotEmpty())
+                            <div class="md:flex-1">
+                                <a href="{{ route('nilaiperpekan.input', ['meeting_id' => $meeting->id, 'course_id' => $courseName->id]) }}" class="flex justify-center border p-3 md:flex-col md:items-center">
+                                    <img src="{{ asset('images/nilai-pekan.png') }}" alt="" class="size-8 md:size-16">
+                                    <p class="ms-3 font-semibold md:ms-0">Nilai Pekan ke-{{ $loop->iteration }}</p>
+                                </a>
+                            </div>
+                            @else
+                            <div class="md:flex-1">
+                                <a href="{{ route('nilaiperpekan.index') }}" class="flex justify-center border p-3 md:flex-col md:items-center">
+                                    <img src="{{ asset('images/nilai-pekan.jpg') }}" alt="" class="size-8 md:size-16">
+                                    <p class="ms-3 font-semibold md:ms-0">Nilai Per-pekan</p>
+                                </a>
+                            </div>
+                            @endif
                         </div>
                     </div>
                 </div>

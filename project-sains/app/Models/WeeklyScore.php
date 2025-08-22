@@ -8,5 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class WeeklyScore extends Model
 {
     use HasFactory;
-    protected $fillable = ['user_id', 'course_id','p1', 'p2', 'p3', 'p4', 'p5','p6','p7','p8','p9','p10'];
+    protected $fillable = ['user_id', 'course_id','meeting_id','score'];
 }
