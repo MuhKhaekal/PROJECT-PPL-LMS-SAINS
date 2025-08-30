@@ -92,7 +92,7 @@
             <p class="text-sm text-center text-gray-500">SAINS telah diikuti lebih dari 10.000 mahasiswa</p>
         </div>
         <div class="font-poppins text-sm sm:flex-1">
-            <p class="text-justify">"Setelah mengikuti kelas SAINS, ilmu saya tentang Al-Quran itu bertambah drastis. Terima kasih kepada kakak-kakak SAINS yang telah membimbing kami sesabar mungkin. "</p>
+            <p class="text-justify">"Sangat baik karena dapat memperdalam ilmu tajwid dan cara bacaan al-quran saya secara baik dan benar ,Setelah menyelesaikan sains saya semakin bersemangat untuk memperdalam ilmu tajwid dan berhenti main michat"</p>
             <div class="flex">
                 <div class="pr-5">
                     <img src="{{ asset('images/logo-sains.png') }}" alt="" class="w-10">
@@ -110,7 +110,7 @@
             <p class="text-sm text-center text-gray-500">SAINS telah diikuti lebih dari 10.000 mahasiswa</p>
         </div>
         <div class="font-poppins text-sm sm:flex-1">
-            <p class="text-justify">"Sangat baik karena dapat memperdalam ilmu tajwid dan cara bacaan al-quran saya secara baik dan benar, Setelah menyelesaikan sains saya semakin bersemangat untuk memperdalam ilmu tajwid."</p>
+            <p class="text-justify">"Sangat baik karena dapat memperdalam ilmu tajwid dan cara bacaan al-quran saya secara baik dan benar ,Setelah menyelesaikan sains saya semakin bersemangat untuk memperdalam ilmu tajwid dan berhenti main michat"</p>
             <div class="flex">
                 <div class="pr-5">
                     <img src="{{ asset('images/logo-sains.png') }}" alt="" class="w-10">

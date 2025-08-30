@@ -13,12 +13,14 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        $this->call([
-            UserSeeder::class,
-            FacultySeeder::class,
-            CourseSeeder::class,
-            PraktikanGroupSeeder::class,
-            MeetingSeeder::class,
+        // User::factory(10)->create();
+
+        User::factory()->create([
+            'name' => 'Test User',
+            'email' => 'test@example.com',
+            'nim' => 'H071221001',
+            'role' => 'user',
+            'password' => bcrypt('12345678'),
         ]);
     }
 }

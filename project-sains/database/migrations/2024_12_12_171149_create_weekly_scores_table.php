@@ -13,10 +13,18 @@ return new class extends Migration
     {
         Schema::create('weekly_scores', function (Blueprint $table) {
             $table->id();
-            $table->integer('score')->nullable();
+            $table->integer('p1')->default(10);
+            $table->integer('p2')->default(10);
+            $table->integer('p3')->default(10);
+            $table->integer('p4')->default(10);
+            $table->integer('p5')->default(10);
+            $table->integer('p6')->default(10);
+            $table->integer('p7')->default(10);
+            $table->integer('p8')->default(10);
+            $table->integer('p9')->default(10);
+            $table->integer('p10')->default(10);
             $table->foreignID('user_id')->nullable()->constrained('users')->onDelete('cascade');
             $table->foreignID('course_id')->nullable()->constrained('course')->onDelete('cascade');
-            $table->foreignID('meeting_id')->nullable()->constrained('meeting')->onDelete('cascade');
             $table->timestamps();
         });
     }

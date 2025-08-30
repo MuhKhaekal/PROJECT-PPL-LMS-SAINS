@@ -4,7 +4,7 @@
 
 @section('content')
 <div class="bg-white min-h-screen p-8 rounded-md border-2">
-  <h1 class="text-3xl font-bold bg-yellow-400 w-fit px-5 py-2  rounded-md shadow-md text-primary">UNGGAH TEMPLATE SERTIFIKAT</h1>
+  <h1 class="text-3xl font-bold">Unggah Sertifikat</h1>
 
 <form action="{{ route('admincertificate.store') }}" method="POST" enctype="multipart/form-data">
   @csrf
@@ -20,7 +20,7 @@
                       </svg>
                   </div>
                   <div class="ml-3">
-                      <h3 class="text-sm font-bold text-red-800">Ada beberapa masalah dengan input Anda:</h3>
+                      <h3 class="text-sm font-medium text-red-800">Ada beberapa masalah dengan input Anda:</h3>
                       <div class="mt-2 text-sm text-red-700">
                           <ul class="list-disc pl-5 space-y-1">
                               @foreach ($errors->all() as $error)
@@ -36,7 +36,7 @@
   <div class="col-span-full  mb-10">
     <div class="flex">
       <div class="flex-1 mx-4">
-        <label for="peserta" class="block text-sm/6 font-bold text-gray-900 mt-5">Sertifikat Peserta</label>
+        <label for="peserta" class="block text-sm/6 font-medium text-gray-900 mt-5">Sertifikat Peserta</label>
         <div class="mt-2 flex justify-center rounded-lg border border-dashed border-gray-900/25 px-6 py-10">
           <div class="text-center">
               <input type="hidden" name="sertifikatPeserta" value="Sertifikat Peserta Umum">
@@ -52,7 +52,7 @@
   
         <div class="flex">
           <div class="flex-1 mx-2">
-            <label for="praktikan_ikhwan-file" class="block text-sm/6 font-bold text-gray-900 mt-5">Praktikan Ikhwan Terbaik</label>
+            <label for="praktikan_ikhwan-file" class="block text-sm/6 font-medium text-gray-900 mt-5">Praktikan Ikhwan Terbaik</label>
             <div class="mt-2 flex justify-center rounded-lg border border-dashed border-gray-900/25 px-6 py-10">
                 <div class="text-center">
                     <input type="hidden" name="sertifikatAsisten" value="Sertifikat Asisten Umum">
@@ -74,7 +74,7 @@
           </div>
     
           <div class="flex-1 mx-2">
-            <label for="praktikan_akhwat_file" class="block text-sm/6 font-bold text-gray-900 mt-5">Praktikan Akhwat Terbaik</label>
+            <label for="praktikan_akhwat_file" class="block text-sm/6 font-medium text-gray-900 mt-5">Praktikan Akhwat Terbaik</label>
             <div class="mt-2 flex justify-center rounded-lg border border-dashed border-gray-900/25 px-6 py-10">
                 <div class="text-center">
                     <input type="hidden" name="sertifikatPesertaIkhwanTerbaik" value="Sertifikat Peserta Ikhwan Terbaik">
@@ -100,7 +100,7 @@
       </div>
       
       <div class="flex-1 mx-4">
-        <label for="asisten" class="block text-sm/6 font-bold text-gray-900 mt-5">Sertifikat Asisten</label>
+        <label for="asisten" class="block text-sm/6 font-medium text-gray-900 mt-5">Sertifikat Asisten</label>
         <div class="mt-2 flex justify-center rounded-lg border border-dashed border-gray-900/25 px-6 py-10">
             <div class="text-center">
                 <input type="hidden" name="sertifikatPesertaAkhwatTerbaik" value="Sertifikat Peserta Akhwat Terbaik">
@@ -117,7 +117,7 @@
     
         <div class="flex">
           <div class="flex-1 mx-2">
-            <label for="asisten_ikhwan-file" class="block text-sm/6 font-bold text-gray-900 mt-5">Asisten Ikhwan Terbaik</label>
+            <label for="asisten_ikhwan-file" class="block text-sm/6 font-medium text-gray-900 mt-5">Asisten Ikhwan Terbaik</label>
             <div class="mt-2 flex justify-center rounded-lg border border-dashed border-gray-900/25 px-6 py-10">
                 <div class="text-center">
                     <input type="hidden" name="sertifikatAsistenIkhwanTerbaik" value="Sertifikat Asisten Ikhwan Terbaik">
@@ -139,7 +139,7 @@
           </div>
     
           <div class="flex-1 mx-2">
-            <label for="asisten_akhwat_file" class="block text-sm/6 font-bold text-gray-900 mt-5">Asisten Akhwat Terbaik</label>
+            <label for="asisten_akhwat_file" class="block text-sm/6 font-medium text-gray-900 mt-5">Asisten Akhwat Terbaik</label>
             <div class="mt-2 flex justify-center rounded-lg border border-dashed border-gray-900/25 px-6 py-10">
                 <div class="text-center">
                    <input type="hidden" name="sertifikatAsistenAkhwatTerbaik" value="Sertifikat Asisten Akhwat Terbaik">

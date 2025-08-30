@@ -4,7 +4,7 @@
 
 @section('content')
 
-<h1 class="text-3xl font-bold bg-yellow-400 w-fit px-5 py-2  rounded-md shadow-md text-primary">SERTIFIKASI</h1>
+<h1 class="text-3xl font-bold bg-gray-500 w-fit px-5 py-2  rounded-md shadow-md text-white">SERTIFIKASI</h1>
 
 <div class="bg-white p-3 rounded-md shadow-md mt-5">
     
@@ -136,7 +136,7 @@
         <button onclick="submit" class="bg-red-500 px-3 py-2 rounded-md text-white hover:bg-red-600 mt-5 ">Hapus semua sertifikat</button>
     </form>
     @else
-    <div class="my-10">
+    <div class="mt-5">
         <a href="{{ route('admincertificate.create') }}" class="bg-blue-500 text-white px-3 py-2 rounded-md">
             + Unggah Sertifikat
         </a>

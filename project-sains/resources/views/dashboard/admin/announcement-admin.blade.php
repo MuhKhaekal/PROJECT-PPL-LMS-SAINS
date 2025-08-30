@@ -3,9 +3,6 @@
 @section('title', 'SAINS - Announcement')
 
 @section('content')
-
-<h1 class="text-3xl font-bold bg-yellow-400 w-fit px-5 py-2  rounded-md shadow-md text-primary">PENGUMUMAN</h1>
-
 <div class="container mx-auto px-4 min-h-screen">
     @if (session('success'))
     <div class="bg-green-500 text-white p-4 rounded-md mb-4 mt-10">
@@ -31,7 +28,7 @@
 
                 <label class="block mb-2 mt-10 text-sm font-medium text-gray-900 " for="user_avatar">Unggah file</label>
                 <input class="block w-full text-sm text-gray-900 p-2 border border-gray-300 rounded-lg cursor-pointer bg-gray-50  focus:outline-none " aria-describedby="user_avatar_help" id="user_avatar" type="file" name="file_name" accept=".pdf">
-                
+                <div class="mt-1 text-sm text-gray-500 " id="user_avatar_help">A profile picture is useful to confirm your are logged into your account</div>
 
                 <input type="hidden" name="user_id" value="{{ $userId }}">
 

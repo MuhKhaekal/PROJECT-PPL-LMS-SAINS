@@ -28,7 +28,7 @@
               <div class="col-span-full">
                 <label for="description" class="block text-sm/6 font-medium text-gray-900">Deskripsi</label>
                 <div class="mt-2">
-                  <textarea id="description" name="description" rows="3" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm/6">{{ $assignment->description }}</textarea>
+                  <textarea id="description" name="description" rows="3" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm/6">"{{ $assignment->description }}"</textarea>
                 </div>
                 <p class="mt-3 text-sm/6 text-gray-600">Tulis deskripsi singkat mengenai tugas yang akan dibahas pada pertemuan kali ini</p>
               </div>
@@ -43,12 +43,12 @@
                     <div class="mt-4 flex text-sm/6 text-gray-600">
                       <label for="assignment_file_name" class="relative cursor-pointer rounded-md bg-white font-semibold text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2 hover:text-indigo-500">
                         <span>Upload a file</span>
-                        <input id="assignment_file_name" name="assignment_file_name" type="file" class="sr-only" accept=".pdf">
+                        <input id="assignment_file_name" name="assignment_file_name" type="file" class="sr-only">
                       </label>
                       <p class="pl-1">or drag and drop</p>
                     </div>
                     <p class="text-xs/5 text-gray-600">PDF up to 10MB</p>
-                    <a id="fileLinkContainer" class="mt-3 text-sm underline text-blue-600" target="_blank" href="{{ asset( $assignment->assignment_file_name ) }}">File Lampiran</a>
+                    <p id="fileLinkContainer" class="mt-3 text-sm underline text-blue-600">{{ $assignment->assignment_file_name }}"</p>
                     <p class="errorContainer text-red-600"></p>
 
 

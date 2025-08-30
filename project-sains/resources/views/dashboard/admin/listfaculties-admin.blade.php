@@ -3,7 +3,7 @@
 @section('title', 'SAINS - List User')
 
 @section('content')
-<h1 class="text-3xl font-bold bg-yellow-400 w-fit px-5 py-2  rounded-md shadow-md text-primary">DAFTAR GRUP SAINS</h1>
+<h1 class="text-3xl font-bold bg-gray-500 w-fit px-5 py-2  rounded-md shadow-md text-white">DAFTAR GRUP SAINS</h1>
 
 <form method="GET" action="{{ route('adminfaculty.index') }}" class="mb-4 mt-5 flex">
     <input type="text" name="search" placeholder="Cari pengguna..." class="border rounded p-2 w-full" value="{{ request()->get('search') }}">

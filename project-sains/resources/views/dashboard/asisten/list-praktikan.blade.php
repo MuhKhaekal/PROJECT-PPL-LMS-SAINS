@@ -8,6 +8,8 @@
     <h1 class="my-10 font-bold text-center md:text-2xl">Akumulasi Nilai</h1>
 
     
+    <form action="{{ route('pretest.store') }}" method="POST">    
+        @csrf
         <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
             <table class="w-full text-sm text-left p-3 rtl:text-right text-primary bg-gray-50">
                 <!-- Heading Utama -->
@@ -74,8 +76,10 @@
 
         <div class="flex justify-end mt-5">
             <a href="{{ route('nilaiperpekan.exportToExcel') }}" class="bg-blue-500 text-white px-4 py-2 rounded-md">Download Excel</a>
-        </div>
 
+            <button type="submit" class="bg-blue-500 px-4 py-2 rounded-md text-white">Simpan</button>
+        </div>
+    </form>
 
 </div>
 @endsection

@@ -3,7 +3,7 @@
 @section('title', 'SAINS - List User')
 
 @section('content')
-<h1 class="text-3xl font-bold bg-yellow-400 w-fit px-5 py-2  rounded-md shadow-md text-primary">DAFTAR PENGGUNA</h1>
+<h1 class="text-3xl font-bold bg-gray-500 w-fit px-5 py-2  rounded-md shadow-md text-white">DAFTAR PENGGUNA</h1>
 
 @if (session('success'))
 <div id="success-message" class="relative bg-green-500 text-white p-4 rounded-md mb-4 mt-10" data-aos="fade">
