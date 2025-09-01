@@ -1,13 +1,13 @@
 <?php
 
-use App\Http\Controllers\AccountsController;
-use App\Http\Controllers\AdminAnnouncementController;
-use App\Http\Controllers\AdminCourseController;
-use App\Http\Controllers\AdminFacultyController;
-use App\Http\Controllers\AdminFaqController;
-use App\Http\Controllers\AdminUserController;
-use App\Http\Controllers\AnnouncementAsistenController;
-use App\Http\Controllers\AnnouncementController;
+use App\Http\Controllers\Admin\AccountsController;
+use App\Http\Controllers\Admin\AdminAnnouncementController;
+use App\Http\Controllers\Admin\AdminCourseController;
+use App\Http\Controllers\Admin\AdminFacultyController;
+use App\Http\Controllers\Admin\AdminFaqController;
+use App\Http\Controllers\Admin\AdminUserController;
+use App\Http\Controllers\Asisten\AnnouncementAsistenController;
+use App\Http\Controllers\User\AnnouncementController as UserAnnouncementController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\ConfirmablePasswordController;
 use App\Http\Controllers\Auth\EmailVerificationNotificationController;
@@ -17,28 +17,28 @@ use App\Http\Controllers\Auth\PasswordController;
 use App\Http\Controllers\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\VerifyEmailController;
-use App\Http\Controllers\StudyGroupController;
-use App\Http\Controllers\AsistenGroupController;
-use App\Http\Controllers\AsistenProfileController;
-use App\Http\Controllers\AssignmentChecksController;
-use App\Http\Controllers\AssignmentController;
-use App\Http\Controllers\CertificateController;
-use App\Http\Controllers\FaqAsistenController;
-use App\Http\Controllers\FaqController;
-use App\Http\Controllers\FillCertifcateController;
-use App\Http\Controllers\ListPraktikanController;
-use App\Http\Controllers\MaterialController;
-use App\Http\Controllers\PresensiController;
-use App\Http\Controllers\MeetingController;
-use App\Http\Controllers\PostTestController;
-use App\Http\Controllers\PreTestController;
-use App\Http\Controllers\ShowAssignmentController;
-use App\Http\Controllers\ShowFaqAdminController;
-use App\Http\Controllers\ShowFaqController;
-use App\Http\Controllers\ShowMaterialController;
-use App\Http\Controllers\SubmissionController;
+use App\Http\Controllers\User\StudyGroupController;
+use App\Http\Controllers\Asisten\AsistenGroupController;
+use App\Http\Controllers\Asisten\AsistenProfileController;
+use App\Http\Controllers\Asisten\AssignmentChecksController;
+use App\Http\Controllers\User\AssignmentController;
+use App\Http\Controllers\Admin\CertificateController;
+use App\Http\Controllers\Asisten\FaqAsistenController;
+use App\Http\Controllers\User\FaqController;
+use App\Http\Controllers\Admin\FillCertifcateController;
+use App\Http\Controllers\Asisten\ListPraktikanController;
+use App\Http\Controllers\Asisten\MaterialController;
+use App\Http\Controllers\Asisten\PresensiController;
+use App\Http\Controllers\Asisten\MeetingController;
+use App\Http\Controllers\Asisten\PostTestController;
+use App\Http\Controllers\Asisten\PreTestController;
+use App\Http\Controllers\User\ShowAssignmentController;
+use App\Http\Controllers\Admin\ShowFaqAdminController;
+use App\Http\Controllers\Asisten\ShowFaqController;
+use App\Http\Controllers\User\ShowMaterialController;
+use App\Http\Controllers\Asisten\SubmissionController;
 use App\Http\Controllers\UserProfileController;
-use App\Http\Controllers\WeeklyScoreController;
+use App\Http\Controllers\Asisten\WeeklyScoreController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
@@ -271,7 +271,7 @@ Route::middleware('auth')->group(function () {
         'update' => 'faq.update',
         'destroy' => 'faq.destroy',
     ]);
-    Route::resource('announcement', AnnouncementController::class)
+    Route::resource('announcement', UserAnnouncementController::class)
     ->middleware('user')
     ->names([
         'index' => 'announcement.index',
