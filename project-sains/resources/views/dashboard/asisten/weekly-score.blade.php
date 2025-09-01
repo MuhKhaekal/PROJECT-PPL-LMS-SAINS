@@ -14,7 +14,7 @@
         </ul>
     </div>
     @endif
-    <h1 class="my-10 font-bold text-center md:text-2xl">Daftar Nilai Post-Test</h1>
+    <h1 class="my-10 font-bold text-center md:text-2xl">Daftar Nilai Pekanan</h1>
     <form action="{{ route('nilaiperpekan.store') }}" method="POST">    
         @csrf
         <div class="relative overflow-x-auto shadow-md sm:rounded-lg">

@@ -47,23 +47,36 @@ class WeeklyScoreController extends Controller
     public function store(Request $request)
     {
         $studentIds = $request->input('student_id');
-        $courseId = $request->input('course_id');
-        $meetingId = $request->input('meeting_id');
-        $scores = $request->input('score');
-        
+        $course_id = $request->input('course_id');
+        $p1 = $request->input('p1', []);
+        $p2 = $request->input('p2', []);
+        $p3 = $request->input('p3', []);
+        $p4 = $request->input('p4', []);
+        $p5 = $request->input('p5', []);
+        $p6 = $request->input('p6', []);
+        $p7 = $request->input('p7', []);
+        $p8 = $request->input('p8', []);
+        $p9 = $request->input('p9', []);
+        $p10 = $request->input('p10', []);
 
     
-        foreach ($studentIds as $index => $student_id) {
-            WeeklyScore::updateOrCreate([
-                'user_id' => $student_id,
-                'course_id' => $courseId,
-                'meeting_id' => $meetingId,
-                'score' => $request->input('score')[$index] ?? 10,
+        foreach ($studentIds as $index => $studentId) {
+            WeeklyScore::create([
+                'user_id' => $studentId,
+                'course_id' => $course_id,
+                'p1' => $p1[$index] ?? 10,
+                'p2' => $p2[$index] ?? 10,
+                'p3' => $p3[$index] ?? 10,
+                'p4' => $p4[$index] ?? 10,
+                'p5' => $p5[$index] ?? 10,
+                'p6' => $p6[$index] ?? 10,
+                'p7' => $p7[$index] ?? 10,
+                'p8' => $p8[$index] ?? 10,
+                'p9' => $p9[$index] ?? 10,
+                'p10' => $p10[$index] ?? 10,
             ]);
         }
 
-
-    
         // Redirect dengan pesan sukses
         return redirect()->route('asisten-group.index')->with('success', 'Data nilai per-pekan berhasil disimpan');
     }
@@ -112,60 +125,37 @@ class WeeklyScoreController extends Controller
         //
     }
 
-    public function updateAll(Request $request, $courseId)
-{
-    $request->validate([
-        'user_id' => 'required|array',
-        'user_id.*' => 'required|exists:users,id',
-        'meeting_id' => 'required|exists:meeting,id',
-        'score' => 'required|array',
-        'score.*' => 'nullable|integer|min:10|max:100',
-    ]);
+    public function updateAll(Request $request, $courseId){
+        $studentIds = $request->input('user_id', []);
+        $p1 = $request->input('p1', []);
+        $p2 = $request->input('p2', []);
+        $p3 = $request->input('p3', []);
+        $p4 = $request->input('p4', []);
+        $p5 = $request->input('p5', []);
+        $p6 = $request->input('p6', []);
+        $p7 = $request->input('p7', []);
+        $p8 = $request->input('p8', []);
+        $p9 = $request->input('p9', []);
+        $p10 = $request->input('p10', []);
 
-    $studentIds = $request->input('user_id', []);
-    $meetingId = $request->input('meeting_id');
-    $scores = $request->input('score');
+        foreach ($studentIds as $index => $studentId) {
+            WeeklyScore::updateOrCreate(
+                ['user_id' => $studentId, 'course_id' => $courseId],
+                [
+                    'p1' => $p1[$index] ?? 10,
+                    'p2' => $p2[$index] ?? 10,
+                    'p3' => $p3[$index] ?? 10,
+                    'p4' => $p4[$index] ?? 10,
+                    'p5' => $p5[$index] ?? 10,
+                    'p6' => $p6[$index] ?? 10,
+                    'p7' => $p7[$index] ?? 10,
+                    'p8' => $p8[$index] ?? 10,
+                    'p9' => $p9[$index] ?? 10,
+                    'p10' => $p10[$index] ?? 10,
+                ]
+            );
+        }
 
-    foreach ($studentIds as $index => $studentId) {
-        WeeklyScore::updateOrCreate(
-            ['user_id' => $student_id, 'course_id' => $course_id, 'meeting_id' => $meeting_id],
-            ['score' => $scores[$index] ?? 10]
-        );
-    }
-
-    return redirect()->route('asisten-group.index')->with('success', 'Data nilai per-pekan berhasil diperbarui.');
-}
-
-
-    /**
-     * Show the form for inputting weekly score for a specific meeting.
-     */
-    // public function input(Request $request)
-    // {
-    //     $meeting_id = $request->query('meeting_id');
-    //     $course_id = $request->query('course_id');
-
-    //     $students = \App\Models\PraktikanGroup::where('course_id', $course_id)
-    //         ->join('users', 'praktikangroup.user_id', '=', 'users.id')
-    //         ->where('users.role', 'user')
-    //         ->select('users.id', 'users.name', 'users.nim')
-    //         ->get();
-    //     $course = (object)[
-    //         'id' => $course_id,
-    //     ];
-    //     return view('dashboard.asisten.weekly-score', compact('students', 'course', 'weekNumber'));
-    // }
-    public function input(Request $request)
-    {
-        $meeting_id = $request->query('meeting_id');
-        $course_id = $request->query('course_id');
-
-        $students = PraktikanGroup::where('course_id', $course_id)
-            ->join('users', 'praktikangroup.user_id', '=', 'users.id')
-            ->where('users.role', 'user')
-            ->select('users.id', 'users.name', 'users.nim')
-            ->get();
-        
-        return view('dashboard.asisten.input-weeklyscore', compact('students', 'meeting_id', 'course_id'));
+        return redirect()->route('asisten-group.index')->with('success', 'Data nilai per-pekan berhasil diperbarui.');
     }
 }
