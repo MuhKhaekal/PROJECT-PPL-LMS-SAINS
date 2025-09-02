@@ -113,7 +113,6 @@ class AssignmentController extends Controller
     public function show(string $id)
     {
 
-        
         $assignment = Assignment::findOrFail($id);
         $submissions = AssignmentCheck::where('assignment_id', $assignment->id )
         ->join('users', 'assignment_checks.user_id', '=', 'users.id')

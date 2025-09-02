@@ -36,12 +36,12 @@
 
         @if ($checkWeeklyScore->where('course_id', $courseName->id)->isNotEmpty())
         <div class="flex border rounded-md my-2">
-            <img src="{{ asset('images/nilai-pekan.png') }}" alt=""  class="size-8 md:size-16">
+            <img src="{{ asset('images/nilai-pekan.jpg') }}" alt=""  class="size-8 md:size-16">
             <a href="{{ route('nilaiperpekan.edit', ['nilaiperpekan' => $courseName->id ]) }}" class="flex items-center mx-3 font-semibold" > Daftar Nilai Per-pekan</a>
         </div>
         @else
             <div class="flex border rounded-md my-2">
-                <img src="{{ asset('images/nilai-pekan.png') }}" alt=""  class="size-8 md:size-16">
+                <img src="{{ asset('images/nilai-pekan.jpg') }}" alt=""  class="size-8 md:size-16">
                 <a href="{{ route('nilaiperpekan.index') }}" class="flex items-center mx-3 font-semibold" > Daftar Nilai Per-pekan</a>
             </div>
         @endif

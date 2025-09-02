@@ -62,7 +62,6 @@ class AssignmentChecksController extends Controller
      */
     public function show(string $id)
     {
-        //
     }
 
     /**
@@ -87,9 +86,21 @@ class AssignmentChecksController extends Controller
     public function destroy(string $id)
     {
         $userId = Auth::id();
-        $assignmentid = AssignmentCheck::where('assignment_id', $id)->where('user_id', $userId)->first();
-        $assignmentid->delete();
-        
-        return redirect()->route('study-group.index')->with('success', 'Submit tugas berhasil dibatalkan');
+    
+        // Cari submission berdasarkan id di tabel assignment_checks dan pastikan milik user login
+        $submission = AssignmentCheck::where('id', $id)
+            ->where('user_id', $userId)
+            ->firstOrFail();
+    
+        // Hapus file fisiknya kalau ada
+        if ($submission->assignment_check_file_name && file_exists(public_path($submission->assignment_check_file_name))) {
+            unlink(public_path($submission->assignment_check_file_name));
+        }
+    
+        // Hapus record database
+        $submission->delete();
+    
+        return redirect()->route('study-group.index')->with('success', 'Submit tugas berhasil dihapus');
     }
+    
 }
