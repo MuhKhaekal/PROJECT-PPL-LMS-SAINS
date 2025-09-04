@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Asisten;
 
 use App\Http\Controllers\Controller;
-use App\Models\PraktikanGroup;
+use App\Models\halaqah;
 use App\Models\WeeklyScore;
 use App\Models\Meeting;
 use Illuminate\Http\Request;
@@ -18,14 +18,14 @@ class WeeklyScoreController extends Controller
     public function index()
     {
         $userId = Auth::id();
-        $course = PraktikanGroup::where('user_id', $userId)
-        ->join('course', 'praktikangroup.course_id', '=', 'course.id')
+        $course = halaqah::where('user_id', $userId)
+        ->join('course', 'halaqah.course_id', '=', 'course.id')
         ->select('course.id', 'course.course_name')
         ->first();
 
-        $students = PraktikanGroup::where('course.id', $course->id )
-        ->join('users', 'praktikangroup.user_id', '=', 'users.id')
-        ->join('course', 'praktikangroup.course_id', '=', 'course.id')
+        $students = halaqah::where('course.id', $course->id )
+        ->join('users', 'halaqah.user_id', '=', 'users.id')
+        ->join('course', 'halaqah.course_id', '=', 'course.id')
         ->where('users.role', 'user')
         ->select('users.id', 'users.name', 'users.nim', 'course.course_name')
         ->get();
@@ -86,9 +86,9 @@ class WeeklyScoreController extends Controller
      */
     public function edit($courseId)
     {
-        $students = PraktikanGroup::where('course_id', $courseId)
-        ->join('users', 'praktikangroup.user_id', '=', 'users.id')
-        ->join('course', 'praktikangroup.course_id', '=', 'course.id')
+        $students = halaqah::where('course_id', $courseId)
+        ->join('users', 'halaqah.user_id', '=', 'users.id')
+        ->join('course', 'halaqah.course_id', '=', 'course.id')
         ->where('users.role', 'user')
         ->select('users.id as user_id', 'users.name', 'users.nim', 'course.course_name')
         ->get();

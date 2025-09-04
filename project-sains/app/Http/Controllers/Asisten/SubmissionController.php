@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Asisten;
 
 use App\Http\Controllers\Controller;
 use App\Models\Assignment;
-use App\Models\AssignmentCheck;
+use App\Models\submissions;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -48,7 +48,7 @@ class SubmissionController extends Controller
      */
     public function edit(string $id)
     {
-        $assignmentCheckId = AssignmentCheck::findorfail($id);
+        $assignmentCheckId = submissions::findorfail($id);
         // Dalam Controller
         $filePath = public_path($assignmentCheckId->assignment_check_file_name);
         $pdfContent = file_get_contents($filePath);

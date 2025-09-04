@@ -23,6 +23,9 @@ class User extends Authenticatable
         'nim',
         'role',
         'password',
+        'jenis_kelamin',
+        'faculty_id',
+        'study_program_id',
     ];
 
     /**

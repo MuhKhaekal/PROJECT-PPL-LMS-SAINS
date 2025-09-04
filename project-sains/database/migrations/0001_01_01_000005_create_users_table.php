@@ -19,6 +19,9 @@ return new class extends Migration
             $table->string('role');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->string('jenis_kelamin');
+            $table->foreignID('faculty_id')->nullable()->constrained('faculty')->onDelete('cascade');            
+            $table->foreignID('study_program_id')->nullable()->constrained('study_program')->onDelete('cascade');   
             $table->rememberToken();
             $table->timestamps();
         });

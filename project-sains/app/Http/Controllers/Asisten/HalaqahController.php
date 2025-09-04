@@ -4,12 +4,12 @@ namespace App\Http\Controllers\Asisten;
 
 use App\Http\Controllers\Controller;
 use App\Exports\StudentsExport;
-use App\Models\PraktikanGroup;
+use App\Models\halaqah;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Facades\Excel;
 
-class ListPraktikanController extends Controller
+class HalaqahController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,14 +17,14 @@ class ListPraktikanController extends Controller
     public function index()
     {
         $userId = Auth::id();
-        $courseName = PraktikanGroup::where('user_id', $userId)
-        ->join('course', 'praktikangroup.course_id', '=', 'course.id')
+        $courseName = halaqah::where('user_id', $userId)
+        ->join('course', 'halaqah.course_id', '=', 'course.id')
         ->select('course.id', 'course.course_name')
         ->first();
 
-        $students = PraktikanGroup::where('course.id', $courseName->id )
-        ->join('users', 'praktikangroup.user_id', '=', 'users.id')
-        ->join('course', 'praktikangroup.course_id', '=', 'course.id')
+        $students = halaqah::where('course.id', $courseName->id )
+        ->join('users', 'halaqah.user_id', '=', 'users.id')
+        ->join('course', 'halaqah.course_id', '=', 'course.id')
         ->join('pretests', 'users.id', '=', 'pretests.user_id')
         ->join('posttests', 'users.id', '=', 'posttests.user_id')
         ->join('weekly_scores', 'users.id', '=', 'weekly_scores.user_id')
@@ -96,14 +96,14 @@ class ListPraktikanController extends Controller
     public function exportToExcel()
 {
     $userId = Auth::id();
-    $courseName = PraktikanGroup::where('user_id', $userId)
-        ->join('course', 'praktikangroup.course_id', '=', 'course.id')
+    $courseName = halaqah::where('user_id', $userId)
+        ->join('course', 'halaqah.course_id', '=', 'course.id')
         ->select('course.id', 'course.course_name')
         ->first();
 
-    $students = PraktikanGroup::where('course.id', $courseName->id )
-        ->join('users', 'praktikangroup.user_id', '=', 'users.id')
-        ->join('course', 'praktikangroup.course_id', '=', 'course.id')
+    $students = halaqah::where('course.id', $courseName->id )
+        ->join('users', 'halaqah.user_id', '=', 'users.id')
+        ->join('course', 'halaqah.course_id', '=', 'course.id')
         ->join('pretests', 'users.id', '=', 'pretests.user_id')
         ->join('posttests', 'users.id', '=', 'posttests.user_id')
         ->join('weekly_scores', 'users.id', '=', 'weekly_scores.user_id')
