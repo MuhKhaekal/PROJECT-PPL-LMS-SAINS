@@ -19,10 +19,6 @@ return new class extends Migration
             $table->integer('p4')->default(10);
             $table->integer('p5')->default(10);
             $table->integer('p6')->default(10);
-            $table->integer('p7')->default(10);
-            $table->integer('p8')->default(10);
-            $table->integer('p9')->default(10);
-            $table->integer('p10')->default(10);
             $table->foreignID('user_id')->nullable()->constrained('users')->onDelete('cascade');
             $table->foreignID('course_id')->nullable()->constrained('course')->onDelete('cascade');
             $table->timestamps();

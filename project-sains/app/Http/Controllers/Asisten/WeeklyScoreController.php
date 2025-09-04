@@ -54,10 +54,6 @@ class WeeklyScoreController extends Controller
         $p4 = $request->input('p4', []);
         $p5 = $request->input('p5', []);
         $p6 = $request->input('p6', []);
-        $p7 = $request->input('p7', []);
-        $p8 = $request->input('p8', []);
-        $p9 = $request->input('p9', []);
-        $p10 = $request->input('p10', []);
 
     
         foreach ($studentIds as $index => $studentId) {
@@ -70,10 +66,6 @@ class WeeklyScoreController extends Controller
                 'p4' => $p4[$index] ?? 10,
                 'p5' => $p5[$index] ?? 10,
                 'p6' => $p6[$index] ?? 10,
-                'p7' => $p7[$index] ?? 10,
-                'p8' => $p8[$index] ?? 10,
-                'p9' => $p9[$index] ?? 10,
-                'p10' => $p10[$index] ?? 10,
             ]);
         }
 
@@ -133,10 +125,6 @@ class WeeklyScoreController extends Controller
         $p4 = $request->input('p4', []);
         $p5 = $request->input('p5', []);
         $p6 = $request->input('p6', []);
-        $p7 = $request->input('p7', []);
-        $p8 = $request->input('p8', []);
-        $p9 = $request->input('p9', []);
-        $p10 = $request->input('p10', []);
 
         foreach ($studentIds as $index => $studentId) {
             WeeklyScore::updateOrCreate(
@@ -148,10 +136,6 @@ class WeeklyScoreController extends Controller
                     'p4' => $p4[$index] ?? 10,
                     'p5' => $p5[$index] ?? 10,
                     'p6' => $p6[$index] ?? 10,
-                    'p7' => $p7[$index] ?? 10,
-                    'p8' => $p8[$index] ?? 10,
-                    'p9' => $p9[$index] ?? 10,
-                    'p10' => $p10[$index] ?? 10,
                 ]
             );
         }
